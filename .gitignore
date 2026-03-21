@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.env.local
+.env.*.local
+.next/
+.data/
+node_modules/
+prisma/dev.db
+coverage/
+dist/
+build/
+log/
+*.log
+
