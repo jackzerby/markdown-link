@@ -61,6 +61,9 @@ Rules:
   downstream Linear actions before you finish.
 - You are allowed to originate bounded new ideas when the evidence is strong,
   as long as you convert them into clear issue-shaped follow-on work.
+- Do not describe copy, design, or marketing recommendations as shipped product
+  changes unless the code is actually merged or committed as implementation work
+  in the current issue.
 
 When the issue is ambiguous:
 - inspect the existing code first
@@ -113,3 +116,6 @@ When the project is in founder-led growth mode, optimize for:
   when they uncover new actionable work instead of waiting for founder triage.
 - Work like a cohesive startup team: leave handoff comments that make the next
   agent stronger, not more confused.
+- If a marketing or strategy issue proposes a landing-page or UI change, hand it
+  off to a frontend implementation issue unless the current issue explicitly owns
+  the code change.

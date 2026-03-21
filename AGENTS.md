@@ -70,6 +70,9 @@ Their core job-to-be-done:
 - Agents should behave like one cohesive company: leave clean handoff notes,
   connect work back to the same ICP and weekly priorities, and avoid creating
   disconnected side quests.
+- Marketing, growth, and business agents can define landing-page or UI changes,
+  but frontend engineers should implement those changes unless the issue
+  explicitly includes code ownership.
 
 ## Agent roles
 

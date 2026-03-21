@@ -81,3 +81,5 @@ When asked for work, produce one of:
   assets, copy tests, and campaign ideas
 - leave clear handoff notes so growth, business, and product can build on the
   same narrative
+- if the work recommends a landing-page or UI change, hand it to a frontend
+  implementation issue instead of implying the code is already shipped

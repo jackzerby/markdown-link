@@ -19,6 +19,12 @@ These are the safest states for Symphony to claim automatically.
 - `Done` means the issue is complete.
 - `Canceled` and `Duplicate` are terminal cleanup states.
 
+Important:
+
+- a strategy or marketing issue can be `In Review` as a brief or recommendation
+- a product/UI/code issue is not truly shipped until the implementation lands in
+  the codebase
+
 ## Issue writing standard
 
 Every issue should include:
@@ -52,6 +58,16 @@ Every issue should include:
    issue in Linear before finishing.
 7. Comment a concise summary.
 8. Move to `In Review` when human validation is needed.
+
+## Handoff rule
+
+If a non-engineering issue proposes a product, landing-page, or UI change:
+
+- write the brief or recommendation clearly
+- create or update a frontend implementation issue
+- link the handoff in a Linear comment
+- do not claim the product change is shipped unless the implementation actually
+  landed
 
 ## Founder rule
 
