@@ -4,9 +4,7 @@ import { MarkdownShell } from "@/components/markdown-shell";
 
 const homeMarkdown = `# markdown.link
 
-publish markdown.
-
-from the cli.
+your markdown, as a URL.
 
 ## install
 
@@ -15,6 +13,8 @@ from the cli.
 ## publish
 
 \`markdown.link ./plan.md\`
+
+\`→ https://markdown.link/p/f7x2k\`
 
 ## links
 
@@ -26,10 +26,8 @@ export default function HomePage() {
     <main className="home-page">
       <MarkdownShell source={homeMarkdown} />
       <p className="muted">
-        free publishes expire. hobby keeps them live.
-      </p>
-      <p>
-        <Link href="/dashboard/plan">see plan</Link>
+        free links expire.{" "}
+        <Link href="/dashboard/plan">hobby keeps them live.</Link>
       </p>
     </main>
   );

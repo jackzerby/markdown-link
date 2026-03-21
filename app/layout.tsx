@@ -4,7 +4,7 @@ import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "markdown.link",
-  description: "Publish markdown from the CLI.",
+  description: "Turn markdown files into shareable URLs from the CLI.",
 };
 
 export default function RootLayout({
