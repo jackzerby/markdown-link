@@ -23,7 +23,7 @@ workspace:
 hooks:
   after_create: |
     git clone --depth 1 https://github.com/jackzerby/markdown-link.git .
-    npm install
+    npm ci
     npx prisma generate
   before_run: |
     test -f .env || cp .env.example .env
@@ -65,3 +65,30 @@ When the issue is ambiguous:
 - inspect the existing code first
 - prefer repo conventions over introducing new patterns
 - leave the workspace in a runnable state
+
+## Role map
+
+Use repo-local skills to keep work focused:
+
+- `$ceo` for weekly priorities, sequencing, and tradeoffs
+- `$product-strategy` for roadmap and packaging decisions
+- `$launch-ops` for always-on content, replies, and release distribution
+- `$growth-lead` for experiments, conversion, and channel learning
+- `$linear` for issue-scoped Linear operations during Symphony sessions
+
+## Startup execution
+
+When the project is in founder-led growth mode, optimize for:
+
+- shipping a small visible improvement every few days
+- publishing proof-based posts from the command line workflow
+- keeping the CLI, share flow, and claim flow obviously understandable
+- turning features into shareable demos before broad expansion
+
+## Related skills
+
+- `ceo`: prioritize, sequence, and decide tradeoffs
+- `product-strategy`: shape roadmap and packaging
+- `launch-ops`: run the daily marketing and release loop
+- `growth-lead`: test channels and improve conversion
+- `linear`: work issue-by-issue through Symphony sessions

@@ -65,6 +65,14 @@ The workflow is configured to:
 - default missing local envs with `cp .env.example .env`
 - run `npm run build` after each attempt
 
+The repo-local role map is:
+
+- `ceo` for priorities and tradeoffs
+- `product-strategy` for roadmap decisions
+- `launch-ops` for daily marketing and release motion
+- `growth-lead` for experiments and channel learning
+- `linear` for issue-level Symphony work
+
 You can start Symphony from this repo with:
 
 ```bash
