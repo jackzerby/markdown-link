@@ -52,13 +52,11 @@ Their core job-to-be-done:
 - When changing product behavior, update docs and env examples in the same change.
 - When making strategy decisions, read the repo-local skills under
   `.codex/skills/`.
-- When making repo workflow changes, keep `WORKFLOW.md` and `.codex/` in sync.
+- When making repo workflow changes, keep the Paperclip company package and the
+  repo docs in sync.
 - Keep Linear issues small enough for one primary owner and one clear outcome.
 - Prefer issue descriptions that read like a GitHub issue: scope, acceptance
   criteria, constraints, and relevant file paths.
-- Use `Todo` and `Next Up` as the main Symphony intake states.
-- Use `In Review` for human review instead of inventing new states unless the
-  team changes its Linear workflow intentionally.
 - Marketing and business roles should actively study the public positioning,
   onboarding, and founder distribution patterns of strong adjacent products and
   turn those learnings into original markdown.link strategy.
@@ -88,7 +86,8 @@ Recommended roles:
 - `$launch-ops`: run the daily marketing and operating loop
 - `$growth-lead`: plan distribution, experiments, and conversion loops
 - `$business-ops`: shape pricing, packaging, and unit-economics decisions
-- `$linear`: use Symphony's `linear_graphql` tool during Symphony sessions
+- The Paperclip company package lives in `COMPANY.md`, `teams/`, `agents/`,
+  `projects/`, and `skills/`.
 
 Role split:
 
@@ -100,12 +99,13 @@ Role split:
 - `$growth-lead` owns experiments, channel testing, and conversion analysis.
 - `$business-ops` owns pricing recommendations, packaging, and basic business
   modeling.
-- `$linear` owns ticket-level work inside Symphony sessions.
+- product and growth work should feed directly into implementation ownership.
 
 ## Reference docs
 
-- `WORKFLOW.md`
+- `COMPANY.md`
 - `README.md`
+- `docs/strategy/paperclip-execution.md`
 - `docs/strategy/market-research-adjacent-playbooks.md`
 - `.codex/skills/ceo/SKILL.md`
 - `.codex/skills/product-strategy/SKILL.md`
@@ -113,7 +113,5 @@ Role split:
 - `.codex/skills/growth-lead/SKILL.md`
 - `.codex/skills/business-ops/SKILL.md`
 - `docs/strategy/team-hiring-plan.md`
-- `docs/strategy/autonomous-symphony-loop.md`
-- `docs/strategy/linear-execution.md`
 - `docs/strategy/content-engine-plan.md`
 - `docs/strategy/pricing-plan.md`

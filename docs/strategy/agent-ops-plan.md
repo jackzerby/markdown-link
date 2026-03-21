@@ -147,7 +147,7 @@ Own:
 
 ## Success criteria
 
-- continuous issue flow in Symphony
+- continuous issue flow in Paperclip
 - weekly shipping cadence
 - daily content drafts ready for review
 - measurable install and publish growth from X
