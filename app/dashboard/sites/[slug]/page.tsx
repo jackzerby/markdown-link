@@ -8,11 +8,13 @@ import { relativeDate } from "@/lib/utils";
 
 type SiteDetailPageProps = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ claimed?: string }>;
 };
 
-export default async function SiteDetailPage({ params }: SiteDetailPageProps) {
+export default async function SiteDetailPage({ params, searchParams }: SiteDetailPageProps) {
   const user = await requireUser();
   const { slug } = await params;
+  const { claimed } = await searchParams;
   const site = await db.site.findFirst({
     where: {
       slug,
@@ -37,6 +39,17 @@ export default async function SiteDetailPage({ params }: SiteDetailPageProps) {
         <h1>{site.title ?? slug}</h1>
         <p>{site.description ?? "markdown publish"}</p>
       </div>
+
+      {claimed === "1" && (
+        <div className="notice stack">
+          <p>publish claimed. it is now tied to your account and will not expire.</p>
+          {user.planTier === "FREE" && (
+            <p>
+              on the free plan, you can keep one permanent publish. <Link href="/dashboard/plan">upgrade to pro</Link> for more.
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="viewer-meta stack">
         <p>slug: {site.slug}</p>

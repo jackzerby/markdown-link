@@ -13,7 +13,7 @@ export default async function DashboardPlanPage() {
     <section className="stack">
       <div className="section-head">
         <h1>plan</h1>
-        <p>{user.planTier === "HOBBY" ? "hobby" : "free"}</p>
+        <p>{user.planTier === "HOBBY" ? "Pro" : "free"}</p>
       </div>
 
       <div className="list">
@@ -37,6 +37,11 @@ export default async function DashboardPlanPage() {
           <span>{usage.apiKeys}</span>
           <span>{usage.domains} domains</span>
         </div>
+        <div className="list-row">
+          <span>price</span>
+          <span>{user.planTier === "HOBBY" ? "$5 / mo" : "free"}</span>
+          <span>{user.planTier === "HOBBY" ? "billed monthly" : "—"}</span>
+        </div>
       </div>
 
       {user.planTier === "HOBBY" ? (
@@ -44,7 +49,7 @@ export default async function DashboardPlanPage() {
       ) : (
         <form action="/api/stripe/checkout" method="post">
           <button className="button" type="submit">
-            upgrade
+            upgrade to pro — $5/mo
           </button>
         </form>
       )}
