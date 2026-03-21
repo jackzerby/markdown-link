@@ -2,7 +2,7 @@
 tracker:
   kind: linear
   api_key: $LINEAR_API_KEY
-  project_slug: "markdown-link"
+  project_slug: "markdown-link-81c4a6ab32c7"
   active_states:
     - Todo
     - In Progress
@@ -65,4 +65,3 @@ When the issue is ambiguous:
 - inspect the existing code first
 - prefer repo conventions over introducing new patterns
 - leave the workspace in a runnable state
-

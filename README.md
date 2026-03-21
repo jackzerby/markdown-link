@@ -59,11 +59,17 @@ Expected env vars for Symphony:
 
 The workflow is configured to:
 
-- poll a Linear project with slug `markdown-link`
+- poll the Linear project at `https://linear.app/jack-zerby-consulting-llc/project/markdown-link-81c4a6ab32c7/overview`
 - clone `https://github.com/jackzerby/markdown-link.git` into each issue workspace
 - run `npm install` and `npx prisma generate` on workspace creation
 - default missing local envs with `cp .env.example .env`
 - run `npm run build` after each attempt
+
+You can start Symphony from this repo with:
+
+```bash
+./scripts/run-symphony.sh --port 4100
+```
 
 Typical startup flow:
 
@@ -78,6 +84,9 @@ export LINEAR_API_KEY=...
 export SYMPHONY_WORKSPACE_ROOT=~/symphony-workspaces
 ./bin/symphony /Users/jackzerby/Sites/markdown-link/WORKFLOW.md
 ```
+
+The helper script assumes Symphony is cloned to `/Users/jackzerby/Sites/symphony`
+and defaults `SYMPHONY_WORKSPACE_ROOT` to `~/symphony-workspaces/markdown-link`.
 
 ## CLI
 
