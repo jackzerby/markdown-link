@@ -42,11 +42,15 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
 
       {claimed === "1" && (
         <div className="notice stack">
-          <p>publish claimed. it is now tied to your account and will not expire.</p>
-          {user.planTier === "FREE" && (
-            <p>
-              on the free plan, you can keep one permanent publish. <Link href="/dashboard/plan">upgrade to pro</Link> for more.
-            </p>
+          {user.planTier === "HOBBY" ? (
+            <p>publish claimed. it is now tied to your account and will not expire.</p>
+          ) : (
+            <>
+              <p>publish claimed. it is now tied to your account.</p>
+              <p>
+                free links still expire. <Link href="/dashboard/plan">upgrade to pro</Link> to keep them permanent.
+              </p>
+            </>
           )}
         </div>
       )}

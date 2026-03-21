@@ -86,8 +86,9 @@ Recommended roles:
 - `$launch-ops`: run the daily marketing and operating loop
 - `$growth-lead`: plan distribution, experiments, and conversion loops
 - `$business-ops`: shape pricing, packaging, and unit-economics decisions
-- The Paperclip company package lives in `COMPANY.md`, `teams/`, `agents/`,
-  `projects/`, and `skills/`.
+- The Paperclip company package lives in `paperclip/company/COMPANY.md`,
+  `paperclip/company/teams/`, `paperclip/company/agents/`,
+  `paperclip/company/projects/`, and `paperclip/company/skills/`.
 
 Role split:
 
@@ -103,7 +104,7 @@ Role split:
 
 ## Reference docs
 
-- `COMPANY.md`
+- `paperclip/company/COMPANY.md`
 - `README.md`
 - `docs/strategy/paperclip-execution.md`
 - `docs/strategy/market-research-adjacent-playbooks.md`

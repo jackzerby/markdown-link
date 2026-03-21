@@ -15,7 +15,7 @@ Usage:
 Options:
   --title <text>        Viewer title
   --description <text>  Viewer description
-  --base-url <url>      API base URL (default: http://localhost:3000)
+  --base-url <url>      API base URL (default: https://markdown.link)
   --api-key <key>       API key for authenticated publishing
   --help                Show this help
 
@@ -45,7 +45,7 @@ function parseArgs(argv) {
   const flags = {
     title: "",
     description: "",
-    baseUrl: process.env.MARKDOWN_LINK_BASE_URL || "http://localhost:3000",
+    baseUrl: process.env.MARKDOWN_LINK_BASE_URL || "https://markdown.link",
     apiKey: process.env.MARKDOWN_LINK_API_KEY || "",
     input: null,
   };
@@ -366,7 +366,10 @@ async function main() {
 
     process.stdout.write(`${payload.siteUrl}\n`);
     if (payload.claimUrl) {
-      process.stderr.write(`claim: ${payload.claimUrl}\n`);
+      const expiry = payload.expiresAt
+        ? ` (expires ${new Date(payload.expiresAt).toLocaleDateString()})`
+        : "";
+      process.stderr.write(`sign in to keep this live${expiry}:\n${payload.claimUrl}\n`);
     }
     return;
   }
@@ -435,7 +438,10 @@ async function main() {
 
   process.stdout.write(`${siteUrl}\n`);
   if (created.claimUrl) {
-    process.stderr.write(`claim: ${created.claimUrl}\n`);
+    const expiry = created.expiresAt
+      ? ` (expires ${new Date(created.expiresAt).toLocaleDateString()})`
+      : "";
+    process.stderr.write(`sign in to keep this live${expiry}:\n${created.claimUrl}\n`);
   }
 }
 

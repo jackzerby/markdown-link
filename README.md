@@ -50,15 +50,15 @@ npm run dev
 ## Paperclip
 
 This repo now includes a Paperclip-friendly company package rooted at
-[COMPANY.md](/Users/jackzerby/Sites/markdown-link/COMPANY.md).
+[COMPANY.md](/Users/jackzerby/Sites/markdown-link/paperclip/company/COMPANY.md).
 
 Paperclip package contents:
 
-- company root in [COMPANY.md](/Users/jackzerby/Sites/markdown-link/COMPANY.md)
-- teams under [/Users/jackzerby/Sites/markdown-link/teams](/Users/jackzerby/Sites/markdown-link/teams)
-- agents under [/Users/jackzerby/Sites/markdown-link/agents](/Users/jackzerby/Sites/markdown-link/agents)
-- starter tasks under [/Users/jackzerby/Sites/markdown-link/projects/markdown-link/tasks](/Users/jackzerby/Sites/markdown-link/projects/markdown-link/tasks)
-- reusable skills under [/Users/jackzerby/Sites/markdown-link/skills](/Users/jackzerby/Sites/markdown-link/skills)
+- company root in [COMPANY.md](/Users/jackzerby/Sites/markdown-link/paperclip/company/COMPANY.md)
+- teams under [/Users/jackzerby/Sites/markdown-link/paperclip/company/teams](/Users/jackzerby/Sites/markdown-link/paperclip/company/teams)
+- agents under [/Users/jackzerby/Sites/markdown-link/paperclip/company/agents](/Users/jackzerby/Sites/markdown-link/paperclip/company/agents)
+- starter tasks under [/Users/jackzerby/Sites/markdown-link/paperclip/company/projects/markdown-link/tasks](/Users/jackzerby/Sites/markdown-link/paperclip/company/projects/markdown-link/tasks)
+- reusable skills under [/Users/jackzerby/Sites/markdown-link/paperclip/company/skills](/Users/jackzerby/Sites/markdown-link/paperclip/company/skills)
 
 Quickstart from Paperclip's docs:
 
@@ -71,14 +71,19 @@ To import this repo as a company package into Paperclip:
 
 ```bash
 pnpm paperclipai company import \
-  --from /Users/jackzerby/Sites/markdown-link \
+  --from /Users/jackzerby/Sites/markdown-link/paperclip/company \
   --target new \
   --new-company-name "markdown.link" \
-  --include company,agents,projects
+  --include company,agents,projects,skills \
+  --api-base http://127.0.0.1:3100
 ```
 
 Paperclip uses an embedded PostgreSQL instance by default and runs locally at
 `http://localhost:3100` in dev mode.
+
+Important: import from `paperclip/company`, not the repo root. The repo root has
+extra markdown docs for app development, and the dedicated package folder keeps
+Paperclip focused on the company package only.
 
 ## CLI
 

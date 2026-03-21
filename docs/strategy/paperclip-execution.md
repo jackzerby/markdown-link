@@ -4,6 +4,12 @@
 
 Define how the markdown.link company package should operate inside Paperclip.
 
+## Package path
+
+Use the dedicated Paperclip package at `paperclip/company/`, not the repo root.
+The repo root contains extra app and strategy markdown that should not be part
+of the imported company package.
+
 ## Operating model
 
 - the company package defines the org chart and starter work

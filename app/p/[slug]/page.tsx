@@ -16,7 +16,7 @@ export default async function PublishViewerPage({ params }: PublishViewerPagePro
   const { slug } = await params;
   const site = await db.site.findUnique({
     where: { slug },
-    include: { currentVersion: true },
+    include: { currentVersion: true, claim: true },
   });
 
   if (!site || !site.currentVersion) {
@@ -48,6 +48,32 @@ export default async function PublishViewerPage({ params }: PublishViewerPagePro
     );
   }
 
+  const now = new Date();
+  const isExpired = !!site.expiresAt && site.expiresAt <= now;
+
+  if (isExpired) {
+    return (
+      <main className="viewer stack">
+        <div className="viewer-meta stack">
+          <p>{site.title ?? slug}</p>
+          <p>this link has expired.</p>
+        </div>
+        <div className="notice">
+          <p>this publish has expired.</p>
+          <p>
+            the author can <Link href="/dashboard/plan">upgrade to Pro</Link> to keep links
+            permanent.
+          </p>
+        </div>
+      </main>
+    );
+  }
+
+  const msLeft = site.expiresAt ? site.expiresAt.getTime() - now.getTime() : null;
+  const daysLeft = msLeft !== null ? Math.ceil(msLeft / (1000 * 60 * 60 * 24)) : null;
+  const isUrgent = daysLeft !== null && daysLeft <= 3;
+  const hasUnclaimedClaim = site.claim && !site.claim.claimedAt;
+
   return (
     <main className="viewer stack">
       <div className="viewer-meta stack">
@@ -55,9 +81,21 @@ export default async function PublishViewerPage({ params }: PublishViewerPagePro
         <p>{site.description ?? "markdown publish"}</p>
         <div className="inline-actions">
           <Link href={`/p/${slug}/raw`}>raw</Link>
-          {site.expiresAt ? <span>expires {relativeDate(site.expiresAt)}</span> : <span>permanent</span>}
+          {site.expiresAt ? (
+            <span style={isUrgent ? { color: "var(--danger)" } : undefined}>
+              expires {relativeDate(site.expiresAt)}
+            </span>
+          ) : (
+            <span>permanent</span>
+          )}
         </div>
       </div>
+      {isUrgent && hasUnclaimedClaim && (
+        <div className="notice">
+          <p>this publish expires {relativeDate(site.expiresAt!)}.</p>
+          <p>use your claim link to keep it live, or <Link href="/dashboard/plan">see plans</Link>.</p>
+        </div>
+      )}
       <MarkdownShell source={site.currentVersion.markdown} />
     </main>
   );

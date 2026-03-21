@@ -110,11 +110,15 @@ export async function assertPublishWithinPlanLimits(input: {
 
   const usage = await getUsageSnapshot(input.userId, input.planTier ?? PlanTier.FREE);
   if (usage.siteLimit !== null && usage.activeSites >= usage.siteLimit) {
-    throw new Error("Free plan site limit reached. Upgrade to keep publishing.");
+    throw new Error(
+      `Free plan site limit reached. Upgrade to keep publishing: ${env.APP_URL}/dashboard/plan`,
+    );
   }
 
   if (usage.storageBytes + input.estimatedBytes > usage.storageLimitBytes) {
-    throw new Error("Free plan storage limit reached. Upgrade to publish more files.");
+    throw new Error(
+      `Free plan storage limit reached. Upgrade to publish more files: ${env.APP_URL}/dashboard/plan`,
+    );
   }
 
   return usage;

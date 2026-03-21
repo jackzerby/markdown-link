@@ -1,3 +1,4 @@
+import { PlanTier } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
@@ -36,14 +37,21 @@ export async function POST(request: Request, { params }: RouteProps) {
     return NextResponse.json({ error: "Invalid token." }, { status: 400 });
   }
 
+  const now = new Date();
+  const removeExpiry = user.planTier === PlanTier.HOBBY;
+
   await db.$transaction([
     db.anonymousClaim.update({
       where: { id: site.claim.id },
-      data: { claimedAt: new Date(), claimedByUserId: user.id },
+      data: { claimedAt: now, claimedByUserId: user.id },
     }),
     db.site.update({
       where: { id: site.id },
-      data: { ownerUserId: user.id, claimedAt: new Date(), expiresAt: null },
+      data: {
+        ownerUserId: user.id,
+        claimedAt: now,
+        ...(removeExpiry ? { expiresAt: null } : {}),
+      },
     }),
   ]);
 

@@ -1,0 +1,163 @@
+schema: paperclip/v1
+agents:
+  ceo:
+    role: ceo
+    adapter:
+      type: claude_local
+      config:
+        cwd: /Users/jackzerby/Sites/markdown-link
+        model: claude-opus-4-6
+        effort: high
+        maxTurnsPerRun: 120
+        dangerouslySkipPermissions: true
+    runtime:
+      heartbeat:
+        intervalSec: 300
+        cooldownSec: 30
+        wakeOnOnDemand: true
+        wakeOnAssignment: true
+        wakeOnAutomation: true
+        maxConcurrentRuns: 1
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+  product-lead:
+    role: general
+    adapter:
+      type: claude_local
+      config:
+        cwd: /Users/jackzerby/Sites/markdown-link
+        model: claude-opus-4-6
+        effort: high
+        maxTurnsPerRun: 100
+        dangerouslySkipPermissions: true
+    runtime:
+      heartbeat:
+        intervalSec: 300
+        cooldownSec: 30
+        wakeOnOnDemand: true
+        wakeOnAssignment: true
+        wakeOnAutomation: true
+        maxConcurrentRuns: 1
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+  business-ops:
+    role: general
+    adapter:
+      type: claude_local
+      config:
+        cwd: /Users/jackzerby/Sites/markdown-link
+        model: claude-opus-4-6
+        effort: high
+        maxTurnsPerRun: 100
+        dangerouslySkipPermissions: true
+    runtime:
+      heartbeat:
+        intervalSec: 600
+        cooldownSec: 30
+        wakeOnOnDemand: true
+        wakeOnAssignment: true
+        wakeOnAutomation: true
+        maxConcurrentRuns: 1
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+  growth-lead:
+    role: cmo
+    adapter:
+      type: claude_local
+      config:
+        cwd: /Users/jackzerby/Sites/markdown-link
+        model: claude-opus-4-6
+        effort: high
+        maxTurnsPerRun: 100
+        dangerouslySkipPermissions: true
+    runtime:
+      heartbeat:
+        intervalSec: 300
+        cooldownSec: 30
+        wakeOnOnDemand: true
+        wakeOnAssignment: true
+        wakeOnAutomation: true
+        maxConcurrentRuns: 1
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+  launch-ops:
+    role: cmo
+    adapter:
+      type: claude_local
+      config:
+        cwd: /Users/jackzerby/Sites/markdown-link
+        model: claude-sonnet-4-6
+        effort: medium
+        maxTurnsPerRun: 100
+        dangerouslySkipPermissions: true
+    runtime:
+      heartbeat:
+        intervalSec: 300
+        cooldownSec: 30
+        wakeOnOnDemand: true
+        wakeOnAssignment: true
+        wakeOnAutomation: true
+        maxConcurrentRuns: 1
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+  fullstack-engineer:
+    role: engineer
+    adapter:
+      type: claude_local
+      config:
+        cwd: /Users/jackzerby/Sites/markdown-link
+        model: claude-sonnet-4-6
+        effort: high
+        maxTurnsPerRun: 120
+        dangerouslySkipPermissions: true
+    runtime:
+      heartbeat:
+        intervalSec: 600
+        cooldownSec: 30
+        wakeOnOnDemand: true
+        wakeOnAssignment: true
+        wakeOnAutomation: true
+        maxConcurrentRuns: 1
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+  frontend-engineer:
+    role: engineer
+    adapter:
+      type: claude_local
+      config:
+        cwd: /Users/jackzerby/Sites/markdown-link
+        model: claude-sonnet-4-6
+        effort: high
+        maxTurnsPerRun: 120
+        dangerouslySkipPermissions: true
+    runtime:
+      heartbeat:
+        intervalSec: 600
+        cooldownSec: 30
+        wakeOnOnDemand: true
+        wakeOnAssignment: true
+        wakeOnAutomation: true
+        maxConcurrentRuns: 1
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional

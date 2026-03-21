@@ -25,7 +25,7 @@ export default async function DashboardPlanPage() {
         <div className="list-row">
           <span>storage</span>
           <span>{storageUsageLabel}</span>
-          <span>{user.planTier === "HOBBY" ? "paid storage" : "free storage"}</span>
+          <span>{user.planTier === "HOBBY" ? "pro storage" : "free storage"}</span>
         </div>
         <div className="list-row">
           <span>publishes this month</span>
@@ -56,7 +56,7 @@ export default async function DashboardPlanPage() {
 
       <p className="muted">
         {user.planTier === "HOBBY"
-          ? "paid links stay live, support custom domains, and use the higher storage limit."
+          ? "pro links stay live, support custom domains, and use the higher storage limit."
           : "free links expire automatically. upgrade to keep them live and raise limits."}
       </p>
     </section>

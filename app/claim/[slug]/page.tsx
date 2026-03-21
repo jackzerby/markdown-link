@@ -24,17 +24,22 @@ export default async function ClaimPage({ params, searchParams }: ClaimPageProps
   return (
     <main className="claim-page stack">
       <div className="section-head">
-        <h1>claim publish</h1>
+        <h1>keep this publish</h1>
         <p>{site.title ?? slug}</p>
       </div>
-      <p>expires {relativeDate(site.expiresAt) ?? "soon"}.</p>
+      <div className="notice stack">
+        <p>free publishes expire. claiming this one ties it to your account so you can keep it live by upgrading to Pro.</p>
+        <p>expires {relativeDate(site.expiresAt) ?? "soon"}.</p>
+      </div>
+      <Link
+        className="button"
+        href={`/auth/start?claimSlug=${slug}&claimToken=${token ?? ""}&next=${encodeURIComponent(`/dashboard/sites/${slug}?claimed=1`)}`}
+      >
+        sign in to claim
+      </Link>
       <div className="inline-actions">
-        <Link
-          href={`/auth/start?claimSlug=${slug}&claimToken=${token ?? ""}&next=/dashboard/sites/${slug}`}
-        >
-          sign in to claim
-        </Link>
         <Link href={`/p/${slug}`}>open publish</Link>
+        <Link href="/dashboard/plan">see plans</Link>
       </div>
     </main>
   );
