@@ -41,6 +41,15 @@ Owns:
 - converting feature work into demo-ready posts
 - summarizing which hooks are working and which are not
 
+### Business ops agent
+
+Owns:
+
+- pricing recommendation
+- packaging decisions
+- upgrade-path clarity
+- weekly review of whether the paid plan still matches user behavior
+
 ### Community agent
 
 Owns:
@@ -91,6 +100,7 @@ Own:
 - create a demo script in markdown
 - turn that script into a post draft and a reply draft
 - ship the feature, then publish the proof
+- queue the landing page asset updates that support that proof
 
 ### Ops loop
 
@@ -107,6 +117,7 @@ Own:
 - decide what to stop doing
 - decide what deserves more agent time
 - decide whether the company is still winning on speed and clarity
+- review whether pricing and packaging still feel obvious
 
 ## Automation ideas
 

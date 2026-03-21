@@ -70,6 +70,7 @@ Recommended roles:
 - `$product-strategy`: translate audience pain into roadmap decisions
 - `$launch-ops`: run the daily marketing and operating loop
 - `$growth-lead`: plan distribution, experiments, and conversion loops
+- `$business-ops`: shape pricing, packaging, and unit-economics decisions
 - `$linear`: use Symphony's `linear_graphql` tool during Symphony sessions
 
 Role split:
@@ -80,6 +81,8 @@ Role split:
 - `$launch-ops` owns recurring content, replies, demos, and operational
   follow-through.
 - `$growth-lead` owns experiments, channel testing, and conversion analysis.
+- `$business-ops` owns pricing recommendations, packaging, and basic business
+  modeling.
 - `$linear` owns ticket-level work inside Symphony sessions.
 
 ## Reference docs
@@ -90,5 +93,8 @@ Role split:
 - `.codex/skills/product-strategy/SKILL.md`
 - `.codex/skills/launch-ops/SKILL.md`
 - `.codex/skills/growth-lead/SKILL.md`
+- `.codex/skills/business-ops/SKILL.md`
 - `docs/strategy/team-hiring-plan.md`
 - `docs/strategy/linear-execution.md`
+- `docs/strategy/content-engine-plan.md`
+- `docs/strategy/pricing-plan.md`

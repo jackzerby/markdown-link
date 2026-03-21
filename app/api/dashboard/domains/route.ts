@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { DomainStatus } from "@prisma/client";
 
 import { requireUser } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -26,7 +25,7 @@ export async function POST(request: Request) {
     await db.domain.update({
       where: { id: existing.id },
       data: {
-        status: DomainStatus.PENDING,
+        status: "PENDING",
         verifiedAt: null,
         verificationToken: randomToken(16),
         dnsTarget: "domains.markdown.link",

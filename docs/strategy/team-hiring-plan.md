@@ -53,7 +53,15 @@ Owns:
 - publish/claim/conversion tracking
 - failure detection
 
-### 6. Engineering swarm
+### 6. Business/pricing agent
+
+Owns:
+
+- pricing recommendations
+- packaging clarity
+- upgrade friction analysis
+
+### 7. Engineering swarm
 
 Owns:
 
@@ -120,4 +128,3 @@ Owns:
 
 If a task cannot be explained in one short sentence, it is probably too broad
 for the current week.
-

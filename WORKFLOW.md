@@ -33,7 +33,7 @@ agent:
   max_turns: 20
 
 codex:
-  command: "codex app-server --model gpt-5.3-codex"
+  command: "codex app-server -c model='\"gpt-5.3-codex\"'"
   approval_policy: never
   thread_sandbox: workspace-write
 ---
@@ -71,6 +71,7 @@ Use repo-local skills to keep work focused:
 - `$product-strategy` for roadmap and packaging decisions
 - `$launch-ops` for always-on content, replies, and release distribution
 - `$growth-lead` for experiments, conversion, and channel learning
+- `$business-ops` for pricing, packaging, and monetization decisions
 - `$linear` for issue-scoped Linear operations during Symphony sessions
 
 ## Startup execution
@@ -88,6 +89,7 @@ When the project is in founder-led growth mode, optimize for:
 - `product-strategy`: shape roadmap and packaging
 - `launch-ops`: run the daily marketing and release loop
 - `growth-lead`: test channels and improve conversion
+- `business-ops`: recommend price, packaging, and commercial priorities
 - `linear`: work issue-by-issue through Symphony sessions
 
 ## Linear best practices
