@@ -89,3 +89,11 @@ When the project is in founder-led growth mode, optimize for:
 - `launch-ops`: run the daily marketing and release loop
 - `growth-lead`: test channels and improve conversion
 - `linear`: work issue-by-issue through Symphony sessions
+
+## Linear best practices
+
+- Only pull from states that the team actually uses for agent intake.
+- Keep issue scope narrow enough that one session can plausibly finish it.
+- When an issue is ambiguous, comment with a proposed approach before broadening scope.
+- Use Linear comments for status, blockers, and handoff notes.
+- Prefer moving work to `In Review` when human validation is needed.

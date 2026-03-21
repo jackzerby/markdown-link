@@ -53,6 +53,12 @@ Their core job-to-be-done:
 - When making strategy decisions, read the repo-local skills under
   `.codex/skills/`.
 - When making repo workflow changes, keep `WORKFLOW.md` and `.codex/` in sync.
+- Keep Linear issues small enough for one primary owner and one clear outcome.
+- Prefer issue descriptions that read like a GitHub issue: scope, acceptance
+  criteria, constraints, and relevant file paths.
+- Use `Todo` and `Next Up` as the main Symphony intake states.
+- Use `In Review` for human review instead of inventing new states unless the
+  team changes its Linear workflow intentionally.
 
 ## Agent roles
 
@@ -85,3 +91,4 @@ Role split:
 - `.codex/skills/launch-ops/SKILL.md`
 - `.codex/skills/growth-lead/SKILL.md`
 - `docs/strategy/team-hiring-plan.md`
+- `docs/strategy/linear-execution.md`
