@@ -57,6 +57,10 @@ Rules:
 - Update docs and env examples when behavior changes.
 - Call out rollout steps when adding new infrastructure or third-party configuration.
 - Avoid weakening auth, rate limits, billing, or expiry behavior.
+- If the issue is research or strategy oriented, convert findings into concrete
+  downstream Linear actions before you finish.
+- You are allowed to originate bounded new ideas when the evidence is strong,
+  as long as you convert them into clear issue-shaped follow-on work.
 
 When the issue is ambiguous:
 - inspect the existing code first
@@ -103,3 +107,9 @@ When the project is in founder-led growth mode, optimize for:
 - Prefer moving work to `In Review` when human validation is needed.
 - Keep research issues separate from implementation issues so marketing,
   business, and engineering workstreams can run in parallel cleanly.
+- Research issues should not end as isolated memos. They should update,
+  create, or re-queue concrete follow-on issues in `Todo` or `Next Up`.
+- Marketing and business issues should create the next smallest follow-on issue
+  when they uncover new actionable work instead of waiting for founder triage.
+- Work like a cohesive startup team: leave handoff comments that make the next
+  agent stronger, not more confused.

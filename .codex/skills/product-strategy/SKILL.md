@@ -36,6 +36,18 @@ Organize work into four buckets:
 3. paid conversion
 4. distribution loops
 
+## Autonomy rule
+
+Product strategy should not just react to tickets. It should originate small,
+evidence-backed ideas when there is a clear product or go-to-market opportunity.
+
+When it does:
+
+- tie the idea to the ICP
+- explain why now
+- define the smallest useful test
+- hand it off as a bounded issue, not a vague concept
+
 ## Good features
 
 - API keys and agent auth
@@ -51,4 +63,3 @@ Organize work into four buckets:
 - collaborative editing before sharing is nailed
 - complex CMS behavior
 - heavy visual customization
-

@@ -18,6 +18,9 @@ Use this skill only inside Symphony-managed Codex sessions where the
 - Treat issue descriptions as source of truth for scope unless a comment or
   explicit founder instruction supersedes them.
 - Do not mutate unrelated issues while working a task.
+- If the current issue is research, strategy, or planning work, use Linear to
+  turn the outcome into concrete downstream issues or state changes before
+  closing the loop.
 
 ## Use cases
 
@@ -25,6 +28,7 @@ Use this skill only inside Symphony-managed Codex sessions where the
 - create or edit comments
 - inspect workflow states
 - move issues between states
+- create follow-on issues when the current issue discovers clear next actions
 
 ## Rules
 
@@ -79,6 +83,21 @@ mutation CreateComment($issueId: String!, $body: String!) {
 mutation UpdateIssueState($id: String!, $stateId: String!) {
   issueUpdate(id: $id, input: { stateId: $stateId }) {
     success
+  }
+}
+```
+
+### Create a follow-on issue
+
+```graphql
+mutation CreateIssue($input: IssueCreateInput!) {
+  issueCreate(input: $input) {
+    success
+    issue {
+      id
+      identifier
+      url
+    }
   }
 }
 ```

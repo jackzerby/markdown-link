@@ -64,6 +64,12 @@ Their core job-to-be-done:
   turn those learnings into original markdown.link strategy.
 - Keep competitor references in internal docs only. Do not mention competitors
   on public landing pages, dashboards, or customer-facing copy.
+- Agents are allowed to generate new ideas and propose new work when they find
+  a clear opportunity, but they should turn those ideas into small, testable,
+  issue-shaped follow-ons instead of vague brainstorms.
+- Agents should behave like one cohesive company: leave clean handoff notes,
+  connect work back to the same ICP and weekly priorities, and avoid creating
+  disconnected side quests.
 
 ## Agent roles
 
@@ -101,6 +107,7 @@ Role split:
 - `.codex/skills/growth-lead/SKILL.md`
 - `.codex/skills/business-ops/SKILL.md`
 - `docs/strategy/team-hiring-plan.md`
+- `docs/strategy/autonomous-symphony-loop.md`
 - `docs/strategy/linear-execution.md`
 - `docs/strategy/content-engine-plan.md`
 - `docs/strategy/pricing-plan.md`

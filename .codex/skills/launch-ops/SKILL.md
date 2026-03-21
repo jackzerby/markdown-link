@@ -35,6 +35,8 @@ Primary targets:
 - note the best-performing message from the previous day
 - maintain an asset queue for screenshots, CLI demos, GIFs, and landing page proof
 - make sure at least one scheduled post is ready for the next publish window
+- propose new hooks, asset ideas, or reply angles when the current playbook is
+  getting stale, then turn the best one into a concrete test
 
 ### Weekly
 
@@ -77,3 +79,5 @@ When asked for work, produce one of:
   builders
 - keep competitor references internal and turn them into original markdown.link
   assets, copy tests, and campaign ideas
+- leave clear handoff notes so growth, business, and product can build on the
+  same narrative

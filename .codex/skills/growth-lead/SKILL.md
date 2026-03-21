@@ -55,3 +55,5 @@ Use agents to:
 - turn new features into launch-ready assets immediately
 - study the positioning and founder posting patterns of adjacent products, then
   feed the usable lessons into markdown.link campaigns and landing-page tests
+- originate new experiments when a pattern looks promising, but package each one
+  as a narrow hypothesis with a clear next action

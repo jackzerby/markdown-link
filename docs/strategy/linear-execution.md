@@ -48,9 +48,28 @@ Every issue should include:
 3. Comment if scope is unclear.
 4. Make the smallest viable change.
 5. Verify locally.
-6. Comment a concise summary.
-7. Move to `In Review` when human validation is needed.
+6. If the work surfaced an obvious next step, create or update the downstream
+   issue in Linear before finishing.
+7. Comment a concise summary.
+8. Move to `In Review` when human validation is needed.
 
 ## Founder rule
 
 If a task is too broad for one agent session, split it before execution.
+
+## Autonomy rule
+
+Symphony should keep the company moving without waiting for manual founder
+triage on every baton pass.
+
+That means:
+
+- research issues should feed landing, content, pricing, or engineering issues
+- marketing issues should generate the next asset, copy test, or campaign issue
+- business issues should turn pricing conclusions into concrete packaging or
+  landing-page tasks
+- engineering issues should generate cleanup or rollout tasks only when they are
+  concrete and bounded
+
+The goal is not to create a noisy backlog. The goal is to maintain a clean queue
+of the next few highest-leverage actions.
