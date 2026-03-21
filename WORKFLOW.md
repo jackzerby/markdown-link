@@ -2,16 +2,13 @@
 tracker:
   kind: linear
   api_key: $LINEAR_API_KEY
-  project_slug: "markdown-link-81c4a6ab32c7"
+  project_slug: "81c4a6ab32c7"
   active_states:
     - Todo
-    - In Progress
-    - Rework
-    - Human Review
+    - Next Up
   terminal_states:
     - Done
-    - Closed
-    - Cancelled
+    - Canceled
     - Duplicate
 
 polling:
