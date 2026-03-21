@@ -16,6 +16,7 @@ In practice:
 - review should be a checkpoint, not a dead end
 - agents should be free to suggest and queue strong new ideas when they are
   evidence-backed and aligned with the company story
+- plans should become owned implementation work, not just polished documents
 
 ## Operating pattern
 
@@ -45,6 +46,8 @@ Marketing and business issues should:
 - create the next smallest issue when a pattern becomes obvious
 - originate fresh ideas for hooks, campaigns, positioning, or packaging when
   the evidence supports it
+- hand off anything that needs implementation to the right engineering or ops
+  owner
 
 ### 4. Engineering closes the product loop
 

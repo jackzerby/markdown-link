@@ -73,6 +73,9 @@ Their core job-to-be-done:
 - Marketing, growth, and business agents can define landing-page or UI changes,
   but frontend engineers should implement those changes unless the issue
   explicitly includes code ownership.
+- More generally, non-engineering agents are expected to push work into real
+  implementation ownership whenever something needs to get built, launched, or
+  measured.
 
 ## Agent roles
 

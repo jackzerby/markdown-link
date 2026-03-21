@@ -64,6 +64,9 @@ Rules:
 - Do not describe copy, design, or marketing recommendations as shipped product
   changes unless the code is actually merged or committed as implementation work
   in the current issue.
+- Plans, memos, and strategy docs are only partial progress. If they imply a
+  real product, growth, or operational change, create or update the
+  implementation issue that gets it built and shipped.
 
 When the issue is ambiguous:
 - inspect the existing code first
@@ -119,3 +122,6 @@ When the project is in founder-led growth mode, optimize for:
 - If a marketing or strategy issue proposes a landing-page or UI change, hand it
   off to a frontend implementation issue unless the current issue explicitly owns
   the code change.
+- More broadly: if any non-engineering issue identifies something that should be
+  built, launched, automated, or measured, hand it to the right implementation
+  owner instead of letting it stop as a recommendation.

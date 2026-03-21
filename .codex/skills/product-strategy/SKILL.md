@@ -47,6 +47,8 @@ When it does:
 - explain why now
 - define the smallest useful test
 - hand it off as a bounded issue, not a vague concept
+- if the idea needs product work, ensure there is a real implementation owner or
+  implementation issue rather than stopping at the brief
 
 ## Good features
 

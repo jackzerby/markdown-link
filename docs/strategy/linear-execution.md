@@ -24,6 +24,8 @@ Important:
 - a strategy or marketing issue can be `In Review` as a brief or recommendation
 - a product/UI/code issue is not truly shipped until the implementation lands in
   the codebase
+- if a brief implies real work, the loop is not complete until there is a
+  downstream implementation issue or owner
 
 ## Issue writing standard
 
@@ -61,10 +63,11 @@ Every issue should include:
 
 ## Handoff rule
 
-If a non-engineering issue proposes a product, landing-page, or UI change:
+If a non-engineering issue proposes a product, landing-page, UI, growth,
+automation, analytics, or operational change:
 
 - write the brief or recommendation clearly
-- create or update a frontend implementation issue
+- create or update the relevant implementation issue
 - link the handoff in a Linear comment
 - do not claim the product change is shipped unless the implementation actually
   landed
@@ -84,6 +87,7 @@ That means:
 - marketing issues should generate the next asset, copy test, or campaign issue
 - business issues should turn pricing conclusions into concrete packaging or
   landing-page tasks
+- strategy issues should convert recommendations into owned implementation work
 - engineering issues should generate cleanup or rollout tasks only when they are
   concrete and bounded
 
