@@ -42,6 +42,7 @@ The landing page team should always be testing:
 - CEO picks the weekly story
 - launch ops drafts the content calendar
 - product strategy selects the most visible feature or proof point
+- growth lead reviews adjacent-product and founder research for fresh hooks
 
 ### Tuesday
 
@@ -66,6 +67,8 @@ The landing page team should always be testing:
 - publish one shipping or proof post
 - summarize what got attention
 - feed learnings back into next week's plan
+- update the research memo with any new onboarding, pricing, or distribution
+  patterns the team should study
 
 ## Scheduling rule
 
@@ -74,4 +77,4 @@ Always keep:
 - 2 posts ready to publish
 - 5 replies ready to send
 - 1 landing page experiment ready for review
-
+- 1 current internal memo on adjacent-product and founder distribution learnings

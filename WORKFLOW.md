@@ -82,6 +82,8 @@ When the project is in founder-led growth mode, optimize for:
 - publishing proof-based posts from the command line workflow
 - keeping the CLI, share flow, and claim flow obviously understandable
 - turning features into shareable demos before broad expansion
+- studying adjacent agent-native products and founder distribution patterns, then
+  translating those learnings into original markdown.link execution
 
 ## Related skills
 
@@ -99,3 +101,5 @@ When the project is in founder-led growth mode, optimize for:
 - When an issue is ambiguous, comment with a proposed approach before broadening scope.
 - Use Linear comments for status, blockers, and handoff notes.
 - Prefer moving work to `In Review` when human validation is needed.
+- Keep research issues separate from implementation issues so marketing,
+  business, and engineering workstreams can run in parallel cleanly.

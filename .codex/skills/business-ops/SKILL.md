@@ -28,6 +28,8 @@ If the CEO has not decided otherwise, recommend:
 - one paid plan beats a complicated ladder early on
 - paid value should map directly to removed friction
 - avoid enterprise packaging before the self-serve loop is working
+- study how adjacent products introduce free, claim, and paid behavior, but make
+  markdown.link pricing decisions from our own usage and positioning
 
 ## Paid value candidates
 
@@ -50,4 +52,3 @@ If the CEO has not decided otherwise, recommend:
 - do not overfit pricing before usage data exists
 - do not create more than one paid tier unless the CEO explicitly asks
 - keep the offer explainable in one short sentence
-

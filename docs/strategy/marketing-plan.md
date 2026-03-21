@@ -5,6 +5,10 @@
 `markdown.link` is the fastest way for founders and technical teams to turn a
 markdown file into a shareable link.
 
+The team should keep an internal research loop on adjacent agent-native
+products and founder accounts so messaging stays grounded in what the market is
+already responding to.
+
 The short promise:
 
 - write in markdown
@@ -77,6 +81,8 @@ Claim links, keep them live, add passwords, and use your domain.
 - publish examples for investor updates, launch plans, team memos, and specs
 - reply to builders already sharing screenshots of markdown, Codex, and Claude Code
 - reuse the same demo structure until it starts converting
+- study adjacent product onboarding, CTA structure, and founder posting rhythm
+  before drafting new variants
 
 ### Week 2: proof of fit
 
@@ -127,6 +133,8 @@ Claim links, keep them live, add passwords, and use your domain.
 - Codex and Claude Code discussion threads
 - AI tooling replies where people are already sharing workflows
 - product-building conversations where markdown is being used manually
+- adjacent founder accounts that visibly convert product work into repeatable
+  public demos
 
 ### Reply strategy
 
@@ -178,3 +186,5 @@ Start only after organic proof exists.
 - do not lead with features before the command
 - do not overproduce content that does not show a real workflow
 - do not chase broad audiences before the founder/operator wedge is working
+- do not copy another product's public copy line-for-line; learn the mechanic
+  and adapt it to markdown.link

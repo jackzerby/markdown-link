@@ -59,6 +59,11 @@ Their core job-to-be-done:
 - Use `Todo` and `Next Up` as the main Symphony intake states.
 - Use `In Review` for human review instead of inventing new states unless the
   team changes its Linear workflow intentionally.
+- Marketing and business roles should actively study the public positioning,
+  onboarding, and founder distribution patterns of strong adjacent products and
+  turn those learnings into original markdown.link strategy.
+- Keep competitor references in internal docs only. Do not mention competitors
+  on public landing pages, dashboards, or customer-facing copy.
 
 ## Agent roles
 
@@ -89,6 +94,7 @@ Role split:
 
 - `WORKFLOW.md`
 - `README.md`
+- `docs/strategy/market-research-adjacent-playbooks.md`
 - `.codex/skills/ceo/SKILL.md`
 - `.codex/skills/product-strategy/SKILL.md`
 - `.codex/skills/launch-ops/SKILL.md`

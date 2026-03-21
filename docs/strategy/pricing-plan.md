@@ -4,6 +4,9 @@
 
 Start with one paid tier at `$5/month`.
 
+Keep the packaging simple, but pressure-test it against adjacent products that
+use free claim flows and premium unlocks to create a natural upgrade path.
+
 ## Why `$5/month` fits
 
 - low enough for solo founders and indie hackers
@@ -57,4 +60,3 @@ Revisit after:
 - repeated free-to-paid demand signals
 - real usage data on publish volume and storage
 - evidence that a team plan is needed
-

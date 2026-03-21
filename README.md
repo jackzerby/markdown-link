@@ -96,6 +96,33 @@ export SYMPHONY_WORKSPACE_ROOT=~/symphony-workspaces
 The helper script assumes Symphony is cloned to `/Users/jackzerby/Sites/symphony`
 and defaults `SYMPHONY_WORKSPACE_ROOT` to `~/symphony-workspaces/markdown-link`.
 
+## Keep Symphony running
+
+To keep Symphony managed by macOS instead of a single terminal session:
+
+```bash
+./scripts/install-symphony-launchd.sh
+```
+
+This installs two user launchd jobs:
+
+- `com.markdownlink.symphony` to run Symphony with `KeepAlive`
+- `com.markdownlink.symphony-heartbeat` to check the state endpoint every 5
+  minutes and kick the service if needed
+
+Useful commands:
+
+```bash
+launchctl print gui/$(id -u)/com.markdownlink.symphony
+launchctl print gui/$(id -u)/com.markdownlink.symphony-heartbeat
+tail -f log/symphony/heartbeat.log
+./scripts/uninstall-symphony-launchd.sh
+```
+
+Note: this keeps Symphony alive while the Mac is awake and the user session is
+active. For truly unattended 24/7 operation, run the same setup on an always-on
+machine or server.
+
 ## CLI
 
 Publish a markdown file directly:

@@ -25,6 +25,8 @@ Not:
 - replies to founders and builders showing real workflows
 - integration content around Codex and Claude Code
 - launch artifacts users can copy into their own workflows
+- adjacent-product research to identify which demos, hooks, and objections are
+  already working in the market
 
 ## Content principles
 
@@ -51,4 +53,5 @@ Use agents to:
 - draft reply candidates for the founder account
 - summarize top converting messaging each week
 - turn new features into launch-ready assets immediately
-
+- study the positioning and founder posting patterns of adjacent products, then
+  feed the usable lessons into markdown.link campaigns and landing-page tests

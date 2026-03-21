@@ -40,6 +40,7 @@ Owns:
 - weekly messaging analysis
 - converting feature work into demo-ready posts
 - summarizing which hooks are working and which are not
+- maintaining the adjacent-playbook research loop and turning it into tests
 
 ### Business ops agent
 
@@ -49,6 +50,8 @@ Owns:
 - packaging decisions
 - upgrade-path clarity
 - weekly review of whether the paid plan still matches user behavior
+- studying how adjacent products create free-to-paid pressure without bloating
+  pricing
 
 ### Community agent
 
@@ -57,6 +60,8 @@ Owns:
 - monitoring X for relevant conversations
 - drafting replies to technical founders and operators
 - finding proof-of-fit moments that can be turned into posts
+- tracking adjacent founder posting patterns and noting what earns replies,
+  reposts, and curiosity
 
 ### Analytics agent
 
@@ -93,6 +98,8 @@ Own:
 - draft 3 to 5 original posts
 - turn the best-performing hook into a reusable template
 - summarize which claims and demos are resonating
+- study adjacent product pages and founder posts weekly, then log what is worth
+  adapting
 
 ### Launch loop
 
