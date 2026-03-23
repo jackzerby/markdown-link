@@ -6,22 +6,28 @@ const os = require("node:os");
 const path = require("node:path");
 const crypto = require("node:crypto");
 
+const DEFAULT_BASE_URL = process.env.MDSHARE_BASE_URL || process.env.MARKDOWN_LINK_BASE_URL || "https://mdshare.link";
+const DEFAULT_API_KEY = process.env.MDSHARE_API_KEY || process.env.MARKDOWN_LINK_API_KEY || "";
+const commandName = path.basename(process.argv[1] || "mdshare");
+
 function usage() {
-  const text = `markdown.link
+  const text = `mdshare.link
 
 Usage:
-  markdown.link [file|-] [options]
+  ${commandName} [file|-] [options]
 
 Options:
   --title <text>        Viewer title
   --description <text>  Viewer description
-  --base-url <url>      API base URL (default: https://markdown.link)
+  --base-url <url>      API base URL (default: ${DEFAULT_BASE_URL})
   --api-key <key>       API key for authenticated publishing
   --help                Show this help
 
 Auth sources:
   --api-key
+  MDSHARE_API_KEY
   MARKDOWN_LINK_API_KEY
+  ~/.mdshare/credentials
   ~/.markdown-link/credentials
 
 Publish modes:
@@ -29,9 +35,9 @@ Publish modes:
   stdin         direct markdown POST
 
 Examples:
-  markdown.link README.md
-  cat plan.md | markdown.link -
-  markdown.link note.md --title "Weekly Plan" --description "Draft"
+  ${commandName} README.md
+  cat plan.md | ${commandName} -
+  ${commandName} note.md --title "Weekly Plan" --description "Draft"
 `;
   process.stdout.write(text);
 }
@@ -45,8 +51,8 @@ function parseArgs(argv) {
   const flags = {
     title: "",
     description: "",
-    baseUrl: process.env.MARKDOWN_LINK_BASE_URL || "https://markdown.link",
-    apiKey: process.env.MARKDOWN_LINK_API_KEY || "",
+    baseUrl: DEFAULT_BASE_URL,
+    apiKey: DEFAULT_API_KEY,
     input: null,
   };
 
@@ -85,12 +91,20 @@ function parseArgs(argv) {
 }
 
 async function readCredentialsFile() {
-  const credentialsPath = path.join(os.homedir(), ".markdown-link", "credentials");
-  try {
-    return (await fsp.readFile(credentialsPath, "utf8")).trim();
-  } catch {
-    return "";
+  const credentialPaths = [
+    path.join(os.homedir(), ".mdshare", "credentials"),
+    path.join(os.homedir(), ".markdown-link", "credentials"),
+  ];
+
+  for (const credentialsPath of credentialPaths) {
+    try {
+      return (await fsp.readFile(credentialsPath, "utf8")).trim();
+    } catch {
+      continue;
+    }
   }
+
+  return "";
 }
 
 async function resolveApiKey(flags) {

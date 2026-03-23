@@ -95,8 +95,8 @@ export async function sendSignInCodeEmail(input: {
   userId?: string | null;
 }) {
   const subject = input.claimPath
-    ? "Your markdown.link claim code"
-    : "Your markdown.link sign-in code";
+    ? "Your mdshare.link claim code"
+    : "Your mdshare.link sign-in code";
 
   const text = [
     subject,

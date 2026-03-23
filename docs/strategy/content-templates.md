@@ -2,7 +2,7 @@
 
 Owner: Growth Lead (templates) → Launch Ops (execution)
 Date: 2026-03-20
-Status: TEMPLATES ONLY — do not post until homepage rewrite ships
+Status: READY — homepage shipped, all blockers resolved. Launch when ready.
 
 ## Post Queue
 
@@ -181,13 +181,13 @@ These require real data. Do not fabricate numbers.
 
 ## Asset Checklist (pre-launch)
 
-- [ ] Homepage rewrite shipped (## why + ## use cases)
-- [ ] OG meta tags in layout.tsx
-- [ ] Demo page at /p/demo (so visitors can see output)
+- [x] Homepage rewrite shipped (## why + ## use cases) — cycle 4
+- [x] OG meta tags in layout.tsx — cycle 4
+- [x] Demo page at /p/demo (so visitors can see output) — engineering
 - [ ] CLI install script accessible at https://markdown.link/install.sh
-- [ ] Show HN draft finalized
-- [ ] Cross-post drafts finalized
-- [ ] Reply templates saved and accessible
+- [x] Show HN draft finalized — cycle 5
+- [x] Cross-post drafts finalized — cycle 3
+- [x] Reply templates saved and accessible — cycle 3
 
 ## Asset Checklist (post-launch)
 

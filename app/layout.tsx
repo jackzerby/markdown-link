@@ -1,22 +1,26 @@
 import type { Metadata } from "next";
 
 import "@/app/globals.css";
+import { env } from "@/lib/env";
+
+const siteUrl = env.APP_URL;
+const siteHost = new URL(siteUrl).host;
 
 export const metadata: Metadata = {
-  title: "markdown.link — your markdown, as a URL",
+  title: `${siteHost} — share markdown from the terminal`,
   description:
-    "Publish any markdown file to a shareable URL from the terminal. One command, no account required. Free links expire, Pro keeps them permanent.",
+    "Publish markdown to a clean shareable URL from the terminal. One command, no account required. Free links expire, Pro keeps them permanent.",
   openGraph: {
-    title: "markdown.link",
-    description: "Your markdown, as a URL. One command, no account.",
-    url: "https://markdown.link",
-    siteName: "markdown.link",
+    title: siteHost,
+    description: "Share markdown from the terminal. One command, no account.",
+    url: siteUrl,
+    siteName: siteHost,
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "markdown.link",
-    description: "Your markdown, as a URL. One command, no account.",
+    title: siteHost,
+    description: "Share markdown from the terminal. One command, no account.",
   },
 };
 

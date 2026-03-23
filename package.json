@@ -2,12 +2,14 @@
   "name": "markdown-link",
   "version": "1.0.0",
   "private": true,
-  "description": "markdown.link app",
+  "description": "mdshare.link app",
   "bin": {
+    "mdshare": "./cli/mdshare.js",
     "markdown.link": "./cli/markdown.link.js"
   },
   "scripts": {
     "dev": "next dev",
+    "dev:stripe": "bash ./scripts/dev-with-stripe.sh",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

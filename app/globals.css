@@ -212,6 +212,10 @@ textarea {
   background: #fff;
 }
 
+.viewer-meta p:first-child {
+  color: var(--text);
+}
+
 .site-card h2,
 .site-card p,
 .list-row p {
@@ -234,6 +238,15 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.viewer-meta .inline-actions a,
+.viewer-meta .inline-actions span {
+  color: var(--muted);
+}
+
+.markdown-toggle button[aria-pressed="true"] {
+  color: var(--text);
 }
 
 .code {

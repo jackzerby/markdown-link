@@ -1,26 +1,31 @@
 import Link from "next/link";
 
 import { MarkdownShell } from "@/components/markdown-shell";
+import { env } from "@/lib/env";
 
-const homeMarkdown = `# markdown.link
+const siteUrl = env.APP_URL.replace(/\/$/, "");
+const siteHost = new URL(siteUrl).host;
+const installUrl = `${siteUrl}/install.sh`;
 
-your markdown, as a URL.
+const homeMarkdown = `# ${siteHost}
+
+share markdown from the terminal.
 
 ## install
 
-\`curl -fsSL https://markdown.link/install.sh | bash\`
+\`curl -fsSL ${installUrl} | bash\`
 
 ## publish
 
-\`markdown.link ./plan.md\`
+\`mdshare ./plan.md\`
 
-\`→ https://markdown.link/p/f7x2k\`
+\`→ ${siteUrl}/p/f7x2k\`
 
 ## why
 
 - no account needed to publish
 - no editor — just your terminal
-- clean rendered page, not a raw paste
+- free links expire after 7 days
 
 ## use cases
 

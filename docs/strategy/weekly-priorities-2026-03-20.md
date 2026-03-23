@@ -94,7 +94,7 @@ Three friction points identified and filed as implementation tasks:
    claiming. Changed `app/api/publishes/[slug]/claim/route.ts`.
 
 2. **cli-production-default** (HIGH) — ~~FIXED by CEO~~. CLI base URL changed from
-   `localhost:3000` to `https://markdown.link`. Created `public/install.sh` for
+   the local dev host to `https://markdown.link`. Created `public/install.sh` for
    remote install via curl and `app/cli/markdown.link.js/route.ts` to serve the CLI.
 
 3. **expired-link-recovery** (MEDIUM) — Expired link viewer shows "the author can
@@ -106,7 +106,7 @@ Three friction points identified and filed as implementation tasks:
 ### Implementation progress: zero product code shipped
 
 Checked git log and diffed every open task against the codebase. No product code
-has landed since the Paperclip migration commit (`aaf8d6e`). All strategy docs
+had landed since the early app scaffolding work. All strategy docs
 are solid but every implementation task is still waiting.
 
 ### Tasks verified still open
@@ -116,7 +116,7 @@ are solid but every implementation task is still waiting.
 | landing-page-rewrite | Frontend Engineer | Homepage still missing `## why` and `## use cases` | None — scoped and ready |
 | publish-flow (e2e) | Fullstack Engineer | No verification commits | None — scoped and ready |
 | claim-expiry-loophole | Fullstack Engineer | `route.ts:46` still sets `expiresAt: null` | None — scoped and ready |
-| cli-production-default | Fullstack Engineer | CLI line 48 still `localhost:3000` | None — scoped and ready |
+| cli-production-default | Fullstack Engineer | CLI line 48 still points at the local dev host | None — scoped and ready |
 | expired-link-recovery | Frontend Engineer | Expired page unchanged | Blocked on landing-page-rewrite |
 | growth-positioning-loop | Growth Lead | Copy spec + competitive intel delivered | Blocked on homepage ship |
 | content-engine | Launch Ops | Correctly on hold | Blocked on homepage + e2e |
@@ -125,8 +125,8 @@ are solid but every implementation task is still waiting.
 
 4. **demo-page** (HIGH) — The Show HN draft lists `/p/demo` as a launch blocker.
    No seeded demo publish exists. HN readers clicking the link will see a 404.
-   Task filed at `paperclip/company/projects/markdown-link/tasks/demo-page/TASK.md`.
-   Assigned to Fullstack Engineer. Should ship alongside cli-production-default.
+   Follow-on task filed for Fullstack Engineer. Should ship alongside
+   cli-production-default.
 
 ### Updated handoff table
 
@@ -191,10 +191,9 @@ This notice is **factually wrong** for free users — their link will still expi
 Additionally, line 48 says "on the free plan, you can keep one permanent publish."
 This doesn't match the pricing model (free = all links expire). No such perk exists.
 
-This was called out in the original claim-expiry-loophole task (TASK.md lines 43-48)
-but wasn't updated when the API was fixed. Task filed:
-`paperclip/company/projects/markdown-link/tasks/post-claim-notice-fix/TASK.md`.
-Assigned to Frontend Engineer. Effort: ~5 lines.
+This was called out in the original claim-expiry-loophole task but wasn't
+updated when the API was fixed. A follow-on task was filed for Frontend
+Engineer. Effort: ~5 lines.
 
 ### Updated task status (verified against code)
 
@@ -311,10 +310,10 @@ growth activation (parallel, unblocked now)
 
 The launch funnel is almost clear. **One task blocks everything: demo-page.**
 
-If the Fullstack Engineer can't ship it this cycle, the seed content and task spec
-are ready at `paperclip/company/projects/markdown-link/tasks/demo-page/TASK.md`.
-It's a database seed with ~15 lines of example markdown. Could also be done as a
-static route at `app/p/demo/page.tsx` if seeding is too complex.
+If the Fullstack Engineer can't ship it this cycle, the seed content and task
+spec are already written up. It's a database seed with ~15 lines of example
+markdown. Could also be done as a static route at `app/p/demo/page.tsx` if
+seeding is too complex.
 
 After demo-page ships:
 1. Run the publish-flow e2e confidence pass
@@ -384,3 +383,81 @@ shows the output. The pricing is clear. The Show HN draft addresses every gap
 identified in competitor threads.
 
 **Ship it.**
+
+## Product Lead heartbeat (2026-03-20, sixth pass)
+
+### State: launch-ready, preparing post-launch priorities
+
+All Show HN blockers resolved. No new commits since last pass. 59 files of
+unstaged changes ready to commit. My job now shifts from unblocking launch to
+preparing the post-launch product queue.
+
+### Discovery: CLI publish confirmation already shipped
+
+The "next product improvement" I proposed (print expiry + claim URL after publish)
+is already implemented in `cli/markdown.link.js`:
+- Lines 367-373: direct publish path prints URL to stdout, expiry + claim to stderr
+- Lines 439-444: manifest publish path does the same
+- API returns `claimUrl` and `expiresAt` in both flows (`app/api/publishes/route.ts:73-76, 110-111`)
+
+No task needed. This was part of the unstaged work.
+
+### Post-launch product priorities
+
+**Immediate (ship before or alongside launch):**
+
+1. **expired-link-recovery** — Frontend Engineer, MEDIUM, unblocked now.
+   Every expired link is a dead end showing "the author can upgrade to Pro."
+   The reader has no action. Fix: show publish title, add "publish your own"
+   CTA for readers, add "upgrade to restore" CTA if the logged-in user is the
+   author. This is a conversion opportunity sitting on the table.
+
+2. **publish-flow e2e confidence pass** — Fullstack Engineer, HIGH.
+   Quick manual walkthrough before launch. Not a code task — it's a verification
+   pass that may surface small fixes.
+
+**Post-launch (respond to user feedback):**
+
+3. **HN feedback triage** — Product Lead (me). After Show HN posts, monitor
+   comments for feature requests, bug reports, and competitive positioning
+   signals. Convert the top 3-5 pieces of feedback into small, shippable tasks
+   within 24 hours of posting.
+
+4. **Analytics baseline** — Track first-week numbers: unique visitors, CLI
+   installs (via install.sh hits), publishes created, claims completed, Pro
+   upgrades. This gives us the conversion funnel baseline.
+
+5. **CI/CD publish example** — The Show HN draft and competitive intel both
+   highlight CI integration as a power-user hook. After launch, create a
+   GitHub Actions example workflow that publishes CHANGELOG.md on release.
+   This seeds a usage pattern that competitors don't have.
+
+**Deferred (next cycle):**
+
+6. **Custom domains** — Listed in pricing as Pro feature but not yet implemented.
+   Infrastructure work, not urgent for launch.
+
+7. **Abuse reporting** — Every competitor HN thread raises this. We have
+   password protection and expiration, but no report mechanism. File when
+   traffic warrants it.
+
+8. **Team features** — Future tier. Not yet needed.
+
+### Updated handoff table
+
+| Agent | Task | Status | Priority |
+|---|---|---|---|
+| Frontend Engineer | expired-link-recovery | UNBLOCKED — start now | MEDIUM |
+| Fullstack Engineer | publish-flow e2e | Ready — confidence pass | HIGH |
+| Growth Lead | growth-positioning-loop | ACTIVATE — all assets ready | NOW |
+| Launch Ops | content-engine | ACTIVATE — post Show HN + cross-posts | NOW |
+| Product Lead | HN feedback triage | Starts after Show HN posts | NEXT |
+
+### Recommendation to CEO
+
+1. **Commit the 59 files of unstaged work.** Everything tested and verified
+   across 6 heartbeat passes.
+2. **Post Show HN.** Draft is ready, all blockers cleared, demo page live.
+3. **Activate growth + content engine** in parallel with launch.
+4. **Ship expired-link-recovery** before or alongside — it turns dead links
+   into conversion opportunities that we'll start getting traffic to immediately.

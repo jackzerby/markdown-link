@@ -55,9 +55,9 @@ export default async function DashboardDomainsPage({
             <div className="viewer-meta stack">
               <p>TXT {getChallengeHost(domain.hostname)} = {domain.verificationToken}</p>
               {isLikelyApexDomain(domain.hostname) ? (
-                <p>ALIAS or ANAME {domain.hostname} = {domain.dnsTarget ?? "domains.markdown.link"}</p>
+                <p>ALIAS or ANAME {domain.hostname} = {domain.dnsTarget ?? "domains.mdshare.link"}</p>
               ) : (
-                <p>CNAME {domain.hostname} = {domain.dnsTarget ?? "domains.markdown.link"}</p>
+                <p>CNAME {domain.hostname} = {domain.dnsTarget ?? "domains.mdshare.link"}</p>
               )}
               <p>{domain.verifiedAt ? `verified ${domain.verifiedAt.toISOString()}` : "pending verification"}</p>
             </div>

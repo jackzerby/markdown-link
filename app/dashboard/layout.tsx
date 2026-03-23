@@ -16,7 +16,7 @@ export default async function DashboardLayout({
       <main className="dashboard-main">
         <header className="dashboard-header">
           <div>
-            <p>markdown.link</p>
+            <p>mdshare.link</p>
             <p className="muted">{user.email}</p>
           </div>
           <Link href="/">home</Link>

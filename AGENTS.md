@@ -52,8 +52,8 @@ Their core job-to-be-done:
 - When changing product behavior, update docs and env examples in the same change.
 - When making strategy decisions, read the repo-local skills under
   `.codex/skills/`.
-- When making repo workflow changes, keep the Paperclip company package and the
-  repo docs in sync.
+- When making repo workflow changes, keep the repo docs in sync with the actual
+  app behavior.
 - Keep Linear issues small enough for one primary owner and one clear outcome.
 - Prefer issue descriptions that read like a GitHub issue: scope, acceptance
   criteria, constraints, and relevant file paths.
@@ -86,10 +86,6 @@ Recommended roles:
 - `$launch-ops`: run the daily marketing and operating loop
 - `$growth-lead`: plan distribution, experiments, and conversion loops
 - `$business-ops`: shape pricing, packaging, and unit-economics decisions
-- The Paperclip company package lives in `paperclip/company/COMPANY.md`,
-  `paperclip/company/teams/`, `paperclip/company/agents/`,
-  `paperclip/company/projects/`, and `paperclip/company/skills/`.
-
 Role split:
 
 - `$ceo` owns what matters this week and what gets deferred.
@@ -104,9 +100,7 @@ Role split:
 
 ## Reference docs
 
-- `paperclip/company/COMPANY.md`
 - `README.md`
-- `docs/strategy/paperclip-execution.md`
 - `docs/strategy/market-research-adjacent-playbooks.md`
 - `.codex/skills/ceo/SKILL.md`
 - `.codex/skills/product-strategy/SKILL.md`

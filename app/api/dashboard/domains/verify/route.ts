@@ -32,7 +32,7 @@ async function verifyDomainDns(domain: {
 }) {
   const challengeHost = getChallengeHost(domain.hostname);
   const expectedToken = normalizeDnsName(domain.verificationToken);
-  const expectedTarget = normalizeDnsName(domain.dnsTarget ?? "domains.markdown.link");
+  const expectedTarget = normalizeDnsName(domain.dnsTarget ?? "domains.mdshare.link");
 
   let txtRecords: string[] = [];
   try {

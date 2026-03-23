@@ -3,8 +3,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE="$SCRIPT_DIR/../cli/markdown.link.js"
-INSTALL_DIR="${MARKDOWN_LINK_INSTALL_DIR:-$HOME/.local/bin}"
-TARGET="$INSTALL_DIR/markdown.link"
+INSTALL_DIR="${MDSHARE_INSTALL_DIR:-${MARKDOWN_LINK_INSTALL_DIR:-$HOME/.local/bin}}"
+TARGET="$INSTALL_DIR/mdshare"
+LEGACY_TARGET="$INSTALL_DIR/markdown.link"
 
 command -v node >/dev/null 2>&1 || {
   echo "error: node is required" >&2
@@ -14,12 +15,13 @@ command -v node >/dev/null 2>&1 || {
 mkdir -p "$INSTALL_DIR"
 cp "$SOURCE" "$TARGET"
 chmod 755 "$TARGET"
+ln -sf "mdshare" "$LEGACY_TARGET"
 
 if [[ ! ":$PATH:" == *":$INSTALL_DIR:"* ]]; then
   cat <<EOF
-installed markdown.link to $TARGET
+installed mdshare to $TARGET
 add $INSTALL_DIR to your PATH to use it directly
 EOF
 else
-  echo "installed markdown.link to $TARGET"
+  echo "installed mdshare to $TARGET"
 fi

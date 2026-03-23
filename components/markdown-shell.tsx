@@ -19,6 +19,7 @@ export function MarkdownShell({
       <nav className="markdown-toggle" aria-label="View mode">
         <button
           className={mode === "rendered" ? "active" : undefined}
+          aria-pressed={mode === "rendered"}
           onClick={() => setMode("rendered")}
           type="button"
         >
@@ -26,6 +27,7 @@ export function MarkdownShell({
         </button>
         <button
           className={mode === "raw" ? "active" : undefined}
+          aria-pressed={mode === "raw"}
           onClick={() => setMode("raw")}
           type="button"
         >

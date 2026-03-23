@@ -4,4 +4,4 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NODE_BIN="${NODE_BIN:-node}"
 
-exec "$NODE_BIN" "$SCRIPT_DIR/../cli/markdown.link.js" "$@"
+exec "$NODE_BIN" "$SCRIPT_DIR/../cli/mdshare.js" "$@"

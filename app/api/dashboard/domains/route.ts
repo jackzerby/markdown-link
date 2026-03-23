@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         status: "PENDING",
         verifiedAt: null,
         verificationToken: randomToken(16),
-        dnsTarget: "domains.markdown.link",
+        dnsTarget: "domains.mdshare.link",
       },
     });
   } else {
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         userId: user.id,
         hostname,
         verificationToken: randomToken(16),
-        dnsTarget: "domains.markdown.link",
+        dnsTarget: "domains.mdshare.link",
       },
     });
   }

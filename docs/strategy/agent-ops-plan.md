@@ -147,7 +147,7 @@ Own:
 
 ## Success criteria
 
-- continuous issue flow in Paperclip
+- continuous issue flow
 - weekly shipping cadence
 - daily content drafts ready for review
 - measurable install and publish growth from X

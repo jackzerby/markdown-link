@@ -116,7 +116,7 @@ Owns:
 3. Friday: analytics and CEO review what converted.
 4. Weekend: keep one lightweight growth agent running for reply opportunities.
 
-## How the team should work with Paperclip
+## How the team should work
 
 - keep each issue scoped narrowly
 - write outcomes in markdown

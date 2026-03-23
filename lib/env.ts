@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const envSchema = z.object({
-  APP_URL: z.string().default("http://localhost:3000"),
+  APP_URL: z.string().url(),
   DATABASE_URL: z.string().default("file:./dev.db"),
   SESSION_SECRET: z.string().default("dev-session-secret"),
   API_KEY_PEPPER: z.string().default("dev-api-key-pepper"),
@@ -18,18 +18,19 @@ const envSchema = z.object({
     .default("false")
     .transform((value) => value === "true"),
   RESEND_API_KEY: z.string().optional(),
-  RESEND_FROM_EMAIL: z.string().default("markdown.link <auth@markdown.link>"),
+  RESEND_FROM_EMAIL: z.string().default("mdshare.link <auth@mdshare.link>"),
   RESEND_REPLY_TO: z.string().optional(),
   RESEND_WEBHOOK_SECRET: z.string().optional(),
   STRIPE_SECRET_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  STRIPE_WEBHOOK_SECRET_FILE: z.string().optional(),
   STRIPE_PRICE_HOBBY_MONTHLY: z.string().optional(),
   STRIPE_CUSTOMER_PORTAL_CONFIGURATION_ID: z.string().optional(),
   FREE_PUBLISH_TTL_SECONDS: z.coerce.number().default(86400),
   FREE_MAX_SITES: z.coerce.number().default(50),
   FREE_STORAGE_BYTES: z.coerce.number().default(10_737_418_240),
   PAID_STORAGE_BYTES: z.coerce.number().default(107_374_182_400),
-  SUPPORT_EMAIL: z.string().default("support@markdown.link"),
+  SUPPORT_EMAIL: z.string().default("support@mdshare.link"),
   LOG_LEVEL: z.string().default("debug"),
   NODE_ENV: z.string().default("development"),
 });
@@ -54,6 +55,7 @@ export const env = envSchema.parse({
   RESEND_WEBHOOK_SECRET: process.env.RESEND_WEBHOOK_SECRET,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+  STRIPE_WEBHOOK_SECRET_FILE: process.env.STRIPE_WEBHOOK_SECRET_FILE,
   STRIPE_PRICE_HOBBY_MONTHLY: process.env.STRIPE_PRICE_HOBBY_MONTHLY,
   STRIPE_CUSTOMER_PORTAL_CONFIGURATION_ID: process.env.STRIPE_CUSTOMER_PORTAL_CONFIGURATION_ID,
   FREE_PUBLISH_TTL_SECONDS: process.env.FREE_PUBLISH_TTL_SECONDS,

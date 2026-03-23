@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { getRequestUser } from "@/lib/auth";
 import { createPendingFilePublish, createPublish } from "@/lib/publishes";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrlFromRequest } from "@/lib/utils";
 import { consumeRateLimit, getClientIdentifier } from "@/lib/rate-limit";
 
 const manifestSchema = z.object({
@@ -24,11 +24,12 @@ export async function POST(request: NextRequest) {
   const isJson = contentType.includes("application/json");
   const payload = isJson ? await request.json() : Object.fromEntries((await request.formData()).entries());
   const clientId = getClientIdentifier(request);
+  const withRequestOrigin = (path: string) => absoluteUrlFromRequest(path, request);
 
   const title = String(payload.title ?? "").trim() || null;
   const description = String(payload.description ?? "").trim() || null;
   const markdown = String(payload.markdown ?? "").trim();
-  const finalize = String(payload.finalize ?? "false") === "true";
+  const finalizeRequested = String(payload.finalize ?? "").toLowerCase() === "true";
   const filesResult = Array.isArray(payload.files)
     ? z.array(manifestSchema).safeParse(payload.files)
     : null;
@@ -69,22 +70,22 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         slug: publish.site.slug,
-        siteUrl: absoluteUrl(`/p/${publish.site.slug}`),
+        siteUrl: withRequestOrigin(`/p/${publish.site.slug}`),
         claimUrl: publish.claimToken
-          ? absoluteUrl(`/claim/${publish.site.slug}?token=${publish.claimToken}`)
+          ? withRequestOrigin(`/claim/${publish.site.slug}?token=${publish.claimToken}`)
           : null,
         expiresAt: publish.site.expiresAt,
         status: "pending",
         upload: {
           versionId: publish.version.id,
-          finalizeUrl: absoluteUrl(`/api/publishes/${publish.site.slug}/finalize`),
+          finalizeUrl: withRequestOrigin(`/api/publishes/${publish.site.slug}/finalize`),
           uploads: filesResult.data.map((file) => ({
             path: file.path,
             method: "PUT",
             headers: {
               "Content-Type": file.contentType,
             },
-            url: absoluteUrl(
+            url: withRequestOrigin(
               `/api/publishes/${publish.site.slug}/files?versionId=${publish.version.id}&path=${encodeURIComponent(
                 file.path,
               )}&token=${publish.uploadToken}`,
@@ -93,6 +94,8 @@ export async function POST(request: NextRequest) {
         },
       });
     }
+
+    const finalize = payload.finalize === undefined ? true : finalizeRequested;
 
     const publish = await createPublish({
       userId: user?.id ?? null,
@@ -106,8 +109,8 @@ export async function POST(request: NextRequest) {
     if (isJson) {
       return NextResponse.json({
         slug: publish.site.slug,
-        siteUrl: absoluteUrl(publish.siteUrl),
-        claimUrl: publish.claimPath ? absoluteUrl(publish.claimPath) : null,
+        siteUrl: withRequestOrigin(publish.siteUrl),
+        claimUrl: publish.claimPath ? withRequestOrigin(publish.claimPath) : null,
         expiresAt: publish.site.expiresAt,
         status: finalize ? "live" : "pending",
       });

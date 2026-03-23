@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 import { db } from "@/lib/db";
-import { env } from "@/lib/env";
+import { getStripeWebhookSecret } from "@/lib/stripe-webhook";
 import { syncSubscriptionFromStripe, stripe } from "@/lib/stripe";
 
 function toPlanStatus(status: string | null | undefined): PlanStatus {
@@ -116,7 +116,9 @@ async function handleStripeEvent(event: Stripe.Event) {
 }
 
 export async function POST(request: Request) {
-  if (!stripe || !env.STRIPE_WEBHOOK_SECRET) {
+  const webhookSecret = getStripeWebhookSecret();
+
+  if (!stripe || !webhookSecret) {
     return NextResponse.json({ error: "Stripe is not configured." }, { status: 500 });
   }
 
@@ -129,7 +131,7 @@ export async function POST(request: Request) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, signature, env.STRIPE_WEBHOOK_SECRET);
+    event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch (error) {
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Invalid signature." },

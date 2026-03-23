@@ -1,6 +1,6 @@
-# markdown.link
+# mdshare.link
 
-`markdown.link` is now a real app scaffold built with Next.js, Prisma, Stripe,
+`mdshare.link` is now a real app scaffold built with Next.js, Prisma, Stripe,
 and Resend.
 
 ## Included
@@ -35,6 +35,9 @@ npm install
 cp .env.example .env
 ```
 
+If you're running locally, switch `APP_URL` in `.env` to
+`http://localhost:3001`.
+
 3. Create the local database:
 
 ```bash
@@ -47,43 +50,47 @@ npx prisma db push
 npm run dev
 ```
 
-## Paperclip
-
-This repo now includes a Paperclip-friendly company package rooted at
-[COMPANY.md](/Users/jackzerby/Sites/markdown-link/paperclip/company/COMPANY.md).
-
-Paperclip package contents:
-
-- company root in [COMPANY.md](/Users/jackzerby/Sites/markdown-link/paperclip/company/COMPANY.md)
-- teams under [/Users/jackzerby/Sites/markdown-link/paperclip/company/teams](/Users/jackzerby/Sites/markdown-link/paperclip/company/teams)
-- agents under [/Users/jackzerby/Sites/markdown-link/paperclip/company/agents](/Users/jackzerby/Sites/markdown-link/paperclip/company/agents)
-- starter tasks under [/Users/jackzerby/Sites/markdown-link/paperclip/company/projects/markdown-link/tasks](/Users/jackzerby/Sites/markdown-link/paperclip/company/projects/markdown-link/tasks)
-- reusable skills under [/Users/jackzerby/Sites/markdown-link/paperclip/company/skills](/Users/jackzerby/Sites/markdown-link/paperclip/company/skills)
-
-Quickstart from Paperclip's docs:
+5. For local Stripe webhook testing, run:
 
 ```bash
-npx paperclipai onboard --yes
-npx paperclipai run
+./scripts/stripe-listen.sh
 ```
 
-To import this repo as a company package into Paperclip:
+That helper forwards Stripe events to `http://localhost:3001/api/stripe/webhook`
+and writes the temporary CLI webhook secret to `.stripe-webhook-secret`, which
+the app will read automatically in development.
+
+If you want the whole local billing loop in one command, run:
 
 ```bash
-pnpm paperclipai company import \
-  --from /Users/jackzerby/Sites/markdown-link/paperclip/company \
-  --target new \
-  --new-company-name "markdown.link" \
-  --include company,agents,projects,skills \
-  --api-base http://127.0.0.1:3100
+npm run dev:stripe
 ```
 
-Paperclip uses an embedded PostgreSQL instance by default and runs locally at
-`http://localhost:3100` in dev mode.
+That starts the dev server on `3001`, waits for it to come up, and then starts
+Stripe webhook forwarding in the same terminal session.
 
-Important: import from `paperclip/company`, not the repo root. The repo root has
-extra markdown docs for app development, and the dedicated package folder keeps
-Paperclip focused on the company package only.
+## Launch config
+
+Before deploying, set these values explicitly:
+
+- `APP_URL=https://mdshare.link`
+- `DATABASE_URL` to your hosted Postgres database
+- `STORAGE_BACKEND=s3` with the S3 bucket, region, and credentials
+- `RESEND_API_KEY` and `RESEND_WEBHOOK_SECRET`
+- `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, and `STRIPE_PRICE_HOBBY_MONTHLY`
+
+Local development can keep:
+
+- `APP_URL=http://localhost:3000`
+- `DATABASE_URL=file:./dev.db`
+- `STORAGE_BACKEND=local`
+
+## Strategy docs
+
+Planning and launch docs live under
+[/Users/jackzerby/Sites/markdown-link/docs/strategy](/Users/jackzerby/Sites/markdown-link/docs/strategy).
+They are reference material for product, marketing, pricing, and launch work,
+but they are not part of the runtime app.
 
 ## CLI
 
@@ -92,6 +99,8 @@ Publish a markdown file directly:
 ```bash
 ./scripts/publish.sh README.md --title "README" --description "project notes" --base-url http://localhost:3000
 ```
+
+For staging or production, point `--base-url` at the deployed app domain instead.
 
 Or install the command into `~/.local/bin`:
 
@@ -102,30 +111,34 @@ Or install the command into `~/.local/bin`:
 Then run:
 
 ```bash
-markdown.link README.md
+mdshare README.md
 ```
 
 You can also pipe content in:
 
 ```bash
-cat README.md | markdown.link -
+cat README.md | mdshare -
 ```
 
 The public URL that the CLI prints comes from the service response, so make
-sure `APP_URL` matches the host where the app is actually reachable.
+sure `APP_URL` matches the host where the app is actually reachable. In
+production, that should be the deployed domain, not the local dev server.
 
 When you pass a file path, the CLI uses the manifest create -> upload ->
 finalize flow. When you pipe markdown through stdin, it uses the direct
 markdown publish path.
 
-API keys can be supplied with `--api-key`, `MARKDOWN_LINK_API_KEY`, or a
+API keys can be supplied with `--api-key`, `MDSHARE_API_KEY`,
+`MARKDOWN_LINK_API_KEY`, `~/.mdshare/credentials`, or a
 `~/.markdown-link/credentials` file containing the key.
 
 Credential lookup order:
 
 1. `--api-key`
-2. `MARKDOWN_LINK_API_KEY`
-3. `~/.markdown-link/credentials`
+2. `MDSHARE_API_KEY`
+3. `MARKDOWN_LINK_API_KEY`
+4. `~/.mdshare/credentials`
+5. `~/.markdown-link/credentials`
 
 The credentials file should contain the raw API key on a single line.
 
@@ -154,6 +167,7 @@ The service now supports two publish modes:
 - `RESEND_WEBHOOK_SECRET`
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
+- `STRIPE_WEBHOOK_SECRET_FILE`
 - `STRIPE_PRICE_HOBBY_MONTHLY`
 
 ## Current product assumptions

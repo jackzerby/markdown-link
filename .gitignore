@@ -3,7 +3,6 @@
 .env.local
 .env.*.local
 .next/
-.paperclip-home/
 .data/
 node_modules/
 prisma/dev.db
@@ -12,3 +11,4 @@ dist/
 build/
 log/
 *.log
+.stripe-webhook-secret

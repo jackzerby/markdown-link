@@ -26,7 +26,7 @@ export default async function DashboardHandlePage() {
         {handles.length === 0 ? <p>no handles yet.</p> : null}
         {handles.map((handle) => (
           <div key={handle.id} className="list-row">
-            <span>{handle.slug}.markdown.link</span>
+            <span>{handle.slug}.mdshare.link</span>
             <span>{handle.isPrimary ? "primary" : "secondary"}</span>
           </div>
         ))}
