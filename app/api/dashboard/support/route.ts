@@ -9,15 +9,17 @@ export async function POST(request: Request) {
   const subject = String(formData.get("subject") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
 
-  if (subject && message) {
-    await db.supportRequest.create({
-      data: {
-        userId: user.id,
-        subject,
-        message,
-      },
-    });
+  if (!subject || !message) {
+    redirect("/dashboard/support?error=Subject%20and%20message%20are%20required.");
   }
 
-  redirect("/dashboard/support");
+  await db.supportRequest.create({
+    data: {
+      userId: user.id,
+      subject,
+      message,
+    },
+  });
+
+  redirect("/dashboard/support?success=Message%20sent.");
 }

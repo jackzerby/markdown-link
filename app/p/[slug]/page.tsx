@@ -1,16 +1,40 @@
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { MarkdownShell } from "@/components/markdown-shell";
 import { db } from "@/lib/db";
 import { env } from "@/lib/env";
 import { hashSecret } from "@/lib/hash";
-import { relativeDate } from "@/lib/utils";
 
 type PublishViewerPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const publishViewStyles = (
+  <style>{`
+    .publish-view {
+      width: min(960px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 40px 0 72px;
+    }
+
+    .publish-view .viewer-form input,
+    .publish-view .viewer-form button {
+      width: 100%;
+    }
+
+    .publish-view .markdown-shell {
+      max-width: 860px;
+    }
+
+    @media (max-width: 900px) {
+      .publish-view {
+        width: calc(100vw - 24px);
+        padding: 24px 0 56px;
+      }
+    }
+  `}</style>
+);
 
 export default async function PublishViewerPage({ params }: PublishViewerPageProps) {
   const { slug } = await params;
@@ -32,12 +56,9 @@ export default async function PublishViewerPage({ params }: PublishViewerPagePro
 
   if (!isUnlocked) {
     return (
-      <main className="viewer stack">
-        <div className="viewer-meta stack">
-          <p>{site.title ?? slug}</p>
-          <p>password required.</p>
-        </div>
-        <form action={`/api/publishes/${slug}/password`} className="stack" method="post">
+      <main className="publish-view">
+        {publishViewStyles}
+        <form action={`/api/publishes/${slug}/password`} className="stack viewer-form" method="post">
           <input name="password" placeholder="password" required type="password" />
           <input name="intent" type="hidden" value="unlock" />
           <button className="button" type="submit">
@@ -53,50 +74,23 @@ export default async function PublishViewerPage({ params }: PublishViewerPagePro
 
   if (isExpired) {
     return (
-      <main className="viewer stack">
-        <div className="viewer-meta stack">
-          <p>{site.title ?? slug}</p>
-          <p>this link has expired.</p>
-        </div>
-        <div className="notice">
-          <p>this publish has expired.</p>
-          <p>
-            the author can <Link href="/dashboard/plan">upgrade to Pro</Link> to keep links
-            permanent.
-          </p>
-        </div>
+      <main className="publish-view">
+        {publishViewStyles}
+        <p className="muted">this link has expired.</p>
       </main>
     );
   }
 
-  const msLeft = site.expiresAt ? site.expiresAt.getTime() - now.getTime() : null;
-  const daysLeft = msLeft !== null ? Math.ceil(msLeft / (1000 * 60 * 60 * 24)) : null;
-  const isUrgent = daysLeft !== null && daysLeft <= 3;
-  const hasUnclaimedClaim = site.claim && !site.claim.claimedAt;
-
   return (
-    <main className="viewer stack">
-      <div className="viewer-meta stack">
-        <p>{site.title ?? slug}</p>
-        <p>{site.description ?? "markdown publish"}</p>
-        <div className="inline-actions">
-          <Link href={`/p/${slug}/raw`}>raw</Link>
-          {site.expiresAt ? (
-            <span style={isUrgent ? { color: "var(--danger)" } : undefined}>
-              expires {relativeDate(site.expiresAt)}
-            </span>
-          ) : (
-            <span>permanent</span>
-          )}
-        </div>
-      </div>
-      {isUrgent && hasUnclaimedClaim && (
-        <div className="notice">
-          <p>this publish expires {relativeDate(site.expiresAt!)}.</p>
-          <p>use your claim link to keep it live, or <Link href="/dashboard/plan">see plans</Link>.</p>
-        </div>
-      )}
-      <MarkdownShell source={site.currentVersion.markdown} />
+    <main className="publish-view">
+      {publishViewStyles}
+      <MarkdownShell
+        brandFooter
+        rawHref={`/p/${slug}/raw`}
+        renderedHref={`/p/${slug}`}
+        source={site.currentVersion.markdown}
+        targetId={`publish-${slug}`}
+      />
     </main>
   );
 }

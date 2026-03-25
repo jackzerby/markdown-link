@@ -33,6 +33,15 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
     notFound();
   }
 
+  const planParams = new URLSearchParams({
+    source: "site",
+    slug: site.slug,
+    title: site.title ?? site.slug,
+  });
+  if (site.expiresAt) {
+    planParams.set("expiresAt", site.expiresAt.toISOString());
+  }
+
   return (
     <section className="stack">
       <div className="site-head">
@@ -48,7 +57,9 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
             <>
               <p>publish claimed. it is now tied to your account.</p>
               <p>
-                free links still expire. <Link href="/dashboard/plan">upgrade to pro</Link> to keep them permanent.
+                free links still expire.{" "}
+                <Link href={`/dashboard/plan?${planParams.toString()}`}>upgrade to pro</Link>{" "}
+                to keep important ones permanent.
               </p>
             </>
           )}
@@ -62,6 +73,9 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
         <div className="inline-actions">
           <Link href={`/p/${site.slug}`}>public</Link>
           <Link href={`/p/${site.slug}/raw`}>raw</Link>
+          {user.planTier !== "HOBBY" ? (
+            <Link href={`/dashboard/plan?${planParams.toString()}`}>see pro</Link>
+          ) : null}
         </div>
       </div>
 
@@ -80,7 +94,10 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
         </button>
       </form>
 
-      <MarkdownShell source={site.currentVersion?.markdown ?? ""} />
+      <MarkdownShell
+        source={site.currentVersion?.markdown ?? ""}
+        targetId={`dashboard-site-${site.slug}`}
+      />
     </section>
   );
 }

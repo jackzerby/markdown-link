@@ -34,16 +34,42 @@ published with [${siteHost}](${siteUrl}).`;
 
 export default function DemoPage() {
   return (
-    <main className="viewer stack">
-      <div className="viewer-meta stack">
-        <p>public demo</p>
-        <p>A published markdown page. Toggle raw markdown to see the source.</p>
-        <div className="inline-actions">
-          <Link href="/p/demo/raw">raw</Link>
-          <Link href="/">home</Link>
-        </div>
-      </div>
-      <MarkdownShell source={demoMarkdown} />
+    <main className="viewer demo-view">
+      <style>{`
+        .demo-view {
+          width: min(960px, calc(100vw - 32px));
+          padding-top: 24px;
+        }
+
+        .demo-back {
+          display: inline-flex;
+          margin-bottom: 18px;
+          color: var(--muted);
+          text-decoration: none;
+        }
+
+        .demo-view .markdown-shell {
+          max-width: 860px;
+        }
+
+        @media (max-width: 900px) {
+          .demo-view {
+            width: calc(100vw - 24px);
+            padding-top: 20px;
+          }
+        }
+      `}</style>
+
+      <Link className="demo-back" href="/">
+        back
+      </Link>
+      <MarkdownShell
+        brandFooter
+        rawHref="/p/demo/raw"
+        renderedHref="/p/demo"
+        source={demoMarkdown}
+        targetId="demo-markdown"
+      />
     </main>
   );
 }

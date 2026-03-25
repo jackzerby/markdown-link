@@ -11,7 +11,7 @@ const DEFAULT_API_KEY = process.env.MDSHARE_API_KEY || process.env.MARKDOWN_LINK
 const commandName = path.basename(process.argv[1] || "mdshare");
 
 function usage() {
-  const text = `mdshare.link
+  const text = `mdshare
 
 Usage:
   ${commandName} [file|-] [options]

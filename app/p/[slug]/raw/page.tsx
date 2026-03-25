@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
+import { MarkdownShell } from "@/components/markdown-shell";
 import { db } from "@/lib/db";
 import { env } from "@/lib/env";
 import { hashSecret } from "@/lib/hash";
@@ -32,8 +33,15 @@ export default async function PublishRawPage({ params }: PublishRawPageProps) {
   }
 
   return (
-    <main className="viewer">
-      <pre className="markdown-raw">{site.currentVersion.markdown}</pre>
+    <main className="viewer" style={{ width: "min(960px, calc(100vw - 32px))" }}>
+      <MarkdownShell
+        brandFooter
+        mode="raw"
+        rawHref={`/p/${slug}/raw`}
+        renderedHref={`/p/${slug}`}
+        source={site.currentVersion.markdown}
+        targetId={`publish-${slug}`}
+      />
     </main>
   );
 }

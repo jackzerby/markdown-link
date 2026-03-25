@@ -21,25 +21,34 @@ export default async function ClaimPage({ params, searchParams }: ClaimPageProps
     notFound();
   }
 
+  const planParams = new URLSearchParams({
+    source: "claim",
+    slug,
+    title: site.title ?? slug,
+  });
+  if (site.expiresAt) {
+    planParams.set("expiresAt", site.expiresAt.toISOString());
+  }
+
   return (
     <main className="claim-page stack">
       <div className="section-head">
-        <h1>keep this publish</h1>
+        <h1>keep this link live</h1>
         <p>{site.title ?? slug}</p>
       </div>
       <div className="notice stack">
-        <p>free publishes expire. claiming this one ties it to your account so you can keep it live by upgrading to Pro.</p>
+        <p>Free publishes expire. Claim this one to tie it to your account and upgrade when you want to keep this exact link permanent.</p>
         <p>expires {relativeDate(site.expiresAt) ?? "soon"}.</p>
       </div>
       <Link
         className="button"
         href={`/auth/start?claimSlug=${slug}&claimToken=${token ?? ""}&next=${encodeURIComponent(`/dashboard/sites/${slug}?claimed=1`)}`}
       >
-        sign in to claim
+        sign in and keep this live
       </Link>
       <div className="inline-actions">
         <Link href={`/p/${slug}`}>open publish</Link>
-        <Link href="/dashboard/plan">see plans</Link>
+        <Link href={`/dashboard/plan?${planParams.toString()}`}>see pro</Link>
       </div>
     </main>
   );

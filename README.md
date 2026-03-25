@@ -10,7 +10,7 @@ and Resend.
 - anonymous publish + claim flow
 - direct markdown publish flow and manifest upload/finalize flow
 - CLI publish command and installer scripts
-- dashboard routes for sites, api keys, plan, domains, handle, and support
+- dashboard routes for sites, api keys, plan, domains, and support
 - public markdown viewer routes
 - password-protected publish flow
 - storage adapter with local `.data/` dev mode and S3-compatible production mode
@@ -81,7 +81,7 @@ Before deploying, set these values explicitly:
 
 Local development can keep:
 
-- `APP_URL=http://localhost:3000`
+- `APP_URL=http://localhost:3001`
 - `DATABASE_URL=file:./dev.db`
 - `STORAGE_BACKEND=local`
 
@@ -97,7 +97,7 @@ but they are not part of the runtime app.
 Publish a markdown file directly:
 
 ```bash
-./scripts/publish.sh README.md --title "README" --description "project notes" --base-url http://localhost:3000
+./scripts/publish.sh README.md --title "README" --description "project notes" --base-url http://localhost:3001
 ```
 
 For staging or production, point `--base-url` at the deployed app domain instead.

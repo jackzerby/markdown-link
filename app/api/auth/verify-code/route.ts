@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { verifyLoginCode } from "@/lib/auth";
 import { consumeRateLimit, getClientIdentifier } from "@/lib/rate-limit";
+import { absoluteUrlFromRequest } from "@/lib/utils";
 
 export async function POST(request: NextRequest) {
   const contentType = request.headers.get("content-type") ?? "";
@@ -49,12 +50,12 @@ export async function POST(request: NextRequest) {
     });
     if (claimSlug) params.set("claimSlug", claimSlug);
     if (claimToken) params.set("claimToken", claimToken);
-    return NextResponse.redirect(new URL(`/auth/verify?${params.toString()}`, request.url));
+    return NextResponse.redirect(absoluteUrlFromRequest(`/auth/verify?${params.toString()}`, request));
   }
 
   if (isJson) {
     return NextResponse.json({ ok: true, redirectPath: result.redirectPath });
   }
 
-  return NextResponse.redirect(new URL(result.redirectPath, request.url));
+  return NextResponse.redirect(absoluteUrlFromRequest(result.redirectPath, request));
 }

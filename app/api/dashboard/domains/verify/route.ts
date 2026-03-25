@@ -4,6 +4,7 @@ import { resolveCname, resolveTxt } from "node:dns/promises";
 
 import { requireUser } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { absoluteUrlFromRequest } from "@/lib/utils";
 
 function extractFormValue(formData: FormData, key: string) {
   return String(formData.get(key) ?? "").trim().toLowerCase();
@@ -77,9 +78,11 @@ export async function POST(request: Request) {
   const user = await requireUser();
   const formData = await request.formData();
   const hostname = extractFormValue(formData, "hostname");
+  const redirectWith = (params: Record<string, string>) =>
+    NextResponse.redirect(absoluteUrlFromRequest(`/dashboard/domains?${new URLSearchParams(params).toString()}`, request));
 
   if (!hostname) {
-    return NextResponse.json({ error: "Hostname is required." }, { status: 400 });
+    return redirectWith({ error: "Hostname is required." });
   }
 
   const domain = await db.domain.findFirst({
@@ -90,15 +93,18 @@ export async function POST(request: Request) {
   });
 
   if (!domain) {
-    return NextResponse.json({ error: "Domain not found." }, { status: 404 });
+    return redirectWith({
+      error: "Domain not found.",
+      hostname,
+    });
   }
 
   const dnsCheck = await verifyDomainDns(domain);
   if (!dnsCheck.ok) {
-    const params = new URLSearchParams({
+    return redirectWith({
       error: dnsCheck.error,
+      hostname,
     });
-    return NextResponse.redirect(new URL(`/dashboard/domains?${params.toString()}`, request.url));
   }
 
   await db.domain.update({
@@ -109,8 +115,10 @@ export async function POST(request: Request) {
     },
   });
 
-  const params = new URLSearchParams({
-    success: `${domain.hostname} verified.`,
+  return redirectWith({
+    success: isLikelyApexDomain(domain.hostname)
+      ? `${domain.hostname} ownership verified. Add the apex routing record to finish traffic setup.`
+      : `${domain.hostname} verified.`,
+    hostname: domain.hostname,
   });
-  return NextResponse.redirect(new URL(`/dashboard/domains?${params.toString()}`, request.url));
 }

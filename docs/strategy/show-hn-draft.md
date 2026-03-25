@@ -23,7 +23,7 @@ markdown.link ./plan.md
 No account required. No editor. Just your terminal and a clean rendered page.
 
 If you publish without signing in, links expire after 7 days. Sign up for Pro
-($5/mo) and they stay permanent. You also get custom domains, a custom handle,
+($5/mo) and they stay permanent. You also get custom domains
 and higher storage limits.
 
 It also works in CI — you can publish release notes from GitHub Actions with an

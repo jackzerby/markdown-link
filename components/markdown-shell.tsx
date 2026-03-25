@@ -1,47 +1,83 @@
-"use client";
-
-import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+import { MarkdownCopyButton } from "@/components/markdown-copy-button";
+import { MarkdownFooterCta } from "@/components/markdown-footer-cta";
 
 type MarkdownShellProps = {
   source: string;
-  defaultMode?: "rendered" | "raw";
+  mode?: "rendered" | "raw";
+  renderedHref?: string;
+  rawHref?: string;
+  targetId: string;
+  brandFooter?: boolean;
 };
 
 export function MarkdownShell({
   source,
-  defaultMode = "rendered",
+  mode = "rendered",
+  renderedHref,
+  rawHref,
+  targetId,
+  brandFooter = false,
 }: MarkdownShellProps) {
-  const [mode, setMode] = useState<"rendered" | "raw">(defaultMode);
-
   return (
     <section className="markdown-shell">
-      <nav className="markdown-toggle" aria-label="View mode">
-        <button
-          className={mode === "rendered" ? "active" : undefined}
-          aria-pressed={mode === "rendered"}
-          onClick={() => setMode("rendered")}
-          type="button"
-        >
-          rendered
-        </button>
-        <button
-          className={mode === "raw" ? "active" : undefined}
-          aria-pressed={mode === "raw"}
-          onClick={() => setMode("raw")}
-          type="button"
-        >
-          markdown
-        </button>
-      </nav>
+      <div className="markdown-controls">
+        <nav className="markdown-toggle" aria-label="View mode">
+          {renderedHref ? (
+            <a
+              className={mode === "rendered" ? "active" : undefined}
+              href={renderedHref}
+            >
+              rendered
+            </a>
+          ) : (
+            <span className={mode === "rendered" ? "active" : undefined}>rendered</span>
+          )}
+          {rawHref ? (
+            <a className={mode === "raw" ? "active" : undefined} href={rawHref}>
+              markdown
+            </a>
+          ) : (
+            <span className={mode === "raw" ? "active" : undefined}>markdown</span>
+          )}
+        </nav>
+
+        <MarkdownCopyButton mode={mode} source={source} targetId={targetId} />
+      </div>
 
       {mode === "rendered" ? (
-        <article className="markdown-rendered prose">
-          <ReactMarkdown>{source}</ReactMarkdown>
+        <article className="markdown-rendered prose" id={targetId}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              table({ children }) {
+                return (
+                  <div className="markdown-table-wrap">
+                    <table>{children}</table>
+                  </div>
+                );
+              },
+            }}
+          >
+            {source}
+          </ReactMarkdown>
         </article>
       ) : (
-        <pre className="markdown-raw">{source}</pre>
+        <pre className="markdown-raw" id={targetId}>
+          {source}
+        </pre>
       )}
+
+      {brandFooter ? (
+        <footer className="markdown-footer">
+          <p>
+            <a href="/">Made with mdshare</a>. Turn markdown into a clean public link from your terminal.
+          </p>
+          <MarkdownFooterCta />
+        </footer>
+      ) : null}
     </section>
   );
 }

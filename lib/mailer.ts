@@ -95,18 +95,26 @@ export async function sendSignInCodeEmail(input: {
   userId?: string | null;
 }) {
   const subject = input.claimPath
-    ? "Your mdshare.link claim code"
-    : "Your mdshare.link sign-in code";
+    ? "Keep your mdshare link live"
+    : "Your mdshare sign-in code";
 
-  const text = [
-    subject,
-    "",
-    `Code: ${input.code}`,
-    "",
-    input.claimPath ? `Claim link: ${absoluteUrl(input.claimPath)}` : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  const text = input.claimPath
+    ? [
+        "You're one step away from keeping this publish tied to your account.",
+        "",
+        `Code: ${input.code}`,
+        "",
+        "Claiming the publish attaches it to your account. Pro keeps it permanent.",
+        "",
+        `Claim link: ${absoluteUrl(input.claimPath)}`,
+      ].join("\n")
+    : [
+        "Use this code to sign in to mdshare.",
+        "",
+        `Code: ${input.code}`,
+        "",
+        "Paste the code into the verify screen to finish signing in.",
+      ].join("\n");
 
   if (!resend) {
     console.info("[mail:dev]", {

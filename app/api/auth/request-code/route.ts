@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { requestLoginCode } from "@/lib/auth";
 import { sendSignInCodeEmail } from "@/lib/mailer";
 import { consumeRateLimit, getClientIdentifier } from "@/lib/rate-limit";
+import { absoluteUrlFromRequest } from "@/lib/utils";
 
 export async function POST(request: NextRequest) {
   const contentType = request.headers.get("content-type") ?? "";
@@ -81,5 +82,5 @@ export async function POST(request: NextRequest) {
   if (claimSlug) params.set("claimSlug", claimSlug);
   if (claimToken) params.set("claimToken", claimToken);
   if (process.env.NODE_ENV !== "production") params.set("debugCode", code);
-  return NextResponse.redirect(new URL(`/auth/verify?${params.toString()}`, request.url));
+  return NextResponse.redirect(absoluteUrlFromRequest(`/auth/verify?${params.toString()}`, request));
 }

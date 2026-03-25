@@ -7,20 +7,20 @@ const siteUrl = env.APP_URL;
 const siteHost = new URL(siteUrl).host;
 
 export const metadata: Metadata = {
-  title: `${siteHost} — share markdown from the terminal`,
+  title: `${siteHost} — publish markdown, get a link`,
   description:
-    "Publish markdown to a clean shareable URL from the terminal. One command, no account required. Free links expire, Pro keeps them permanent.",
+    "Publish any markdown file to a shareable URL with one command. Free for 7 days, $5/mo to keep.",
   openGraph: {
-    title: siteHost,
-    description: "Share markdown from the terminal. One command, no account.",
+    title: `${siteHost} — publish markdown, get a link`,
+    description: "One command turns any .md file into a clean, shareable URL.",
     url: siteUrl,
     siteName: siteHost,
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: siteHost,
-    description: "Share markdown from the terminal. One command, no account.",
+    title: `${siteHost} — publish markdown, get a link`,
+    description: "One command turns any .md file into a clean, shareable URL.",
   },
 };
 

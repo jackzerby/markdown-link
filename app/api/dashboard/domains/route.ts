@@ -3,14 +3,17 @@ import { NextResponse } from "next/server";
 import { requireUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { randomToken } from "@/lib/hash";
+import { absoluteUrlFromRequest } from "@/lib/utils";
 
 export async function POST(request: Request) {
   const user = await requireUser();
   const formData = await request.formData();
   const hostname = String(formData.get("hostname") ?? "").trim().toLowerCase();
+  const redirectWith = (params: Record<string, string>) =>
+    NextResponse.redirect(absoluteUrlFromRequest(`/dashboard/domains?${new URLSearchParams(params).toString()}`, request));
 
   if (!hostname) {
-    return NextResponse.json({ error: "Hostname is required." }, { status: 400 });
+    return redirectWith({ error: "Hostname is required." });
   }
 
   const existing = await db.domain.findUnique({
@@ -18,7 +21,10 @@ export async function POST(request: Request) {
   });
 
   if (existing && existing.userId !== user.id) {
-    return NextResponse.json({ error: "That domain is already claimed." }, { status: 409 });
+    return redirectWith({
+      error: "That domain is already claimed.",
+      hostname,
+    });
   }
 
   if (existing) {
@@ -42,5 +48,8 @@ export async function POST(request: Request) {
     });
   }
 
-  return NextResponse.redirect(new URL("/dashboard/domains", request.url));
+  return redirectWith({
+    success: existing ? "DNS instructions refreshed." : "Domain added.",
+    hostname,
+  });
 }

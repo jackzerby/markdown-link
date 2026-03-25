@@ -34,8 +34,15 @@ export async function POST(request: NextRequest) {
     ? z.array(manifestSchema).safeParse(payload.files)
     : null;
 
+  function redirectToDashboard(message: string) {
+    return NextResponse.redirect(absoluteUrlFromRequest(`/dashboard/sites?error=${encodeURIComponent(message)}`, request));
+  }
+
   if (!markdown && !filesResult?.success) {
-    return NextResponse.json({ error: "Markdown is required." }, { status: 400 });
+    if (isJson) {
+      return NextResponse.json({ error: "Markdown is required." }, { status: 400 });
+    }
+    return redirectToDashboard("Markdown is required.");
   }
 
   const publishLimit = consumeRateLimit({
@@ -45,6 +52,9 @@ export async function POST(request: NextRequest) {
   });
 
   if (!publishLimit.allowed) {
+    if (!isJson) {
+      return redirectToDashboard("Too many publishes. Try again later.");
+    }
     return NextResponse.json(
       { error: "Too many publishes. Try again later." },
       {
@@ -117,17 +127,15 @@ export async function POST(request: NextRequest) {
     }
 
     if (user) {
-      return NextResponse.redirect(new URL(`/dashboard/sites/${publish.site.slug}`, request.url));
+      return NextResponse.redirect(absoluteUrlFromRequest(`/dashboard/sites/${publish.site.slug}`, request));
     }
 
-    return NextResponse.redirect(new URL(publish.claimPath ?? publish.siteUrl, request.url));
+    return NextResponse.redirect(absoluteUrlFromRequest(publish.claimPath ?? publish.siteUrl, request));
   } catch (error) {
     const message = error instanceof Error ? error.message : "Could not create publish.";
     if (isJson) {
       return NextResponse.json({ error: message }, { status: 400 });
     }
-    return NextResponse.redirect(
-      new URL(`/dashboard/sites?error=${encodeURIComponent(message)}`, request.url),
-    );
+    return redirectToDashboard(message);
   }
 }

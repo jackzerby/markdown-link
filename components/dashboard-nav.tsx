@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 const items = [
   { href: "/dashboard/sites", label: "Sites" },
-  { href: "/dashboard/handle", label: "Handle" },
   { href: "/dashboard/domains", label: "Domains" },
   { href: "/dashboard/api-key", label: "API key" },
   { href: "/dashboard/plan", label: "Plan" },
@@ -10,10 +13,19 @@ const items = [
 ];
 
 export function DashboardNav() {
+  const pathname = usePathname();
+
   return (
     <aside className="dashboard-nav">
+      <p className="dashboard-nav-label">workspace</p>
       {items.map((item) => (
-        <Link key={item.href} href={item.href}>
+        <Link
+          key={item.href}
+          className={clsx(
+            pathname === item.href || pathname.startsWith(`${item.href}/`) ? "is-active" : undefined,
+          )}
+          href={item.href}
+        >
           {item.label}
         </Link>
       ))}

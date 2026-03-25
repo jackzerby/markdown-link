@@ -23,7 +23,7 @@ if [[ ! ":$PATH:" == *":$INSTALL_DIR:"* ]]; then
 installed mdshare to $TARGET
 add $INSTALL_DIR to your PATH to use it directly:
 
-  export PATH="\$HOME/.local/bin:\$PATH"
+  export PATH="$INSTALL_DIR:\$PATH"
 EOF
 else
   echo "installed mdshare to $TARGET"

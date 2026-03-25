@@ -1,4 +1,6 @@
 import Link from "next/link";
+
+import { MarkdownShell } from "@/components/markdown-shell";
 import { env } from "@/lib/env";
 
 const siteUrl = env.APP_URL.replace(/\/$/, "");
@@ -32,16 +34,18 @@ published with [${siteHost}](${siteUrl}).`;
 
 export default function DemoRawPage() {
   return (
-    <main className="viewer stack">
-      <div className="viewer-meta stack">
-        <p>public demo</p>
-        <p>Raw markdown source.</p>
-        <div className="inline-actions">
-          <Link href="/p/demo">rendered</Link>
-          <Link href="/">home</Link>
-        </div>
-      </div>
-      <pre className="markdown-raw">{demoMarkdown}</pre>
+    <main className="viewer" style={{ width: "min(960px, calc(100vw - 32px))", paddingTop: "24px" }}>
+      <Link href="/" style={{ display: "inline-flex", marginBottom: 18, color: "var(--muted)", textDecoration: "none" }}>
+        back
+      </Link>
+      <MarkdownShell
+        brandFooter
+        mode="raw"
+        rawHref="/p/demo/raw"
+        renderedHref="/p/demo"
+        source={demoMarkdown}
+        targetId="demo-markdown"
+      />
     </main>
   );
 }
