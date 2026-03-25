@@ -379,8 +379,11 @@ textarea {
 }
 
 .markdown-footer {
-  display: grid;
-  gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
   margin-top: 28px;
   padding-top: 16px;
   color: var(--muted);
@@ -398,9 +401,6 @@ textarea {
 .markdown-footer-cta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 .markdown-footer-button {
@@ -413,14 +413,14 @@ textarea {
   text-underline-offset: 0.18em;
 }
 
-.markdown-footer-note {
-  margin: 0;
-}
-
 @media (max-width: 640px) {
-  .markdown-footer-cta {
+  .markdown-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .markdown-footer-cta {
+    align-items: flex-start;
   }
 }
 

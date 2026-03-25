@@ -36,7 +36,7 @@ export default async function DashboardPlanPage({
         <p>
           {isPro
             ? "Your links are permanent. Manage billing and usage below."
-            : "Free links expire in 7 days. Pro ($5/mo) keeps them permanent."}
+            : "Free links expire in 7 days. Pro ($5/mo) removes expiry."}
         </p>
       </div>
 
@@ -90,8 +90,7 @@ export default async function DashboardPlanPage({
         <p className="dashboard-panel-label">{isPro ? "current plan" : "pro includes"}</p>
         <div className="dashboard-list">
           <p>Permanent links</p>
-          <p>Higher storage and publish limits</p>
-          <p>API-key publishing from the CLI</p>
+          <p>Higher storage and active link limits</p>
         </div>
       </div>
 

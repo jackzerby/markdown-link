@@ -26,7 +26,7 @@ const envSchema = z.object({
   STRIPE_WEBHOOK_SECRET_FILE: z.string().optional(),
   STRIPE_PRICE_HOBBY_MONTHLY: z.string().optional(),
   STRIPE_CUSTOMER_PORTAL_CONFIGURATION_ID: z.string().optional(),
-  FREE_PUBLISH_TTL_SECONDS: z.coerce.number().default(86400),
+  FREE_PUBLISH_TTL_SECONDS: z.coerce.number().default(604800),
   FREE_MAX_SITES: z.coerce.number().default(50),
   FREE_STORAGE_BYTES: z.coerce.number().default(10_737_418_240),
   PAID_STORAGE_BYTES: z.coerce.number().default(107_374_182_400),

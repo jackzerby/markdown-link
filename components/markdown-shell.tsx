@@ -73,7 +73,7 @@ export function MarkdownShell({
       {brandFooter ? (
         <footer className="markdown-footer">
           <p>
-            <a href="/">Made with mdshare</a>. Turn markdown into a clean public link from your terminal.
+            <a href="/">Made with mdshare</a>
           </p>
           <MarkdownFooterCta />
         </footer>
