@@ -43,13 +43,6 @@ enum SiteVersionStatus {
   DELETED
 }
 
-enum DomainStatus {
-  PENDING
-  VERIFIED
-  ACTIVE
-  FAILED
-}
-
 enum EmailTemplate {
   LOGIN_CODE
   CLAIM_LINK
@@ -83,7 +76,6 @@ model User {
   ownedSites       Site[]           @relation("OwnedSites")
   siteVersions     SiteVersion[]
   handles          Handle[]
-  domains          Domain[]
   subscription     Subscription?
   billingEvents    BillingEvent[]
   supportRequests  SupportRequest[]
@@ -146,18 +138,6 @@ model Handle {
   isPrimary Boolean  @default(false)
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Domain {
-  id                String       @id @default(cuid())
-  userId            String
-  hostname          String       @unique
-  status            DomainStatus @default(PENDING)
-  verificationToken String
-  verifiedAt        DateTime?
-  dnsTarget         String?
-  createdAt         DateTime     @default(now())
-  user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Site {

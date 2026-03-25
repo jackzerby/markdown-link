@@ -70,8 +70,8 @@ export function MarkdownCopyButton({
         : status === "error"
           ? "copy failed"
           : mode === "raw"
-            ? "copy markdown"
-            : "copy page"}
+            ? "Copy markdown"
+            : "Copy text"}
     </button>
   );
 }

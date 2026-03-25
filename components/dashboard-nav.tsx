@@ -5,8 +5,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 const items = [
-  { href: "/dashboard/sites", label: "Sites" },
-  { href: "/dashboard/domains", label: "Domains" },
+  { href: "/dashboard/sites", label: "Links" },
   { href: "/dashboard/api-key", label: "API key" },
   { href: "/dashboard/plan", label: "Plan" },
   { href: "/dashboard/support", label: "Support" },
@@ -17,7 +16,7 @@ export function DashboardNav() {
 
   return (
     <aside className="dashboard-nav">
-      <p className="dashboard-nav-label">workspace</p>
+      <p className="dashboard-nav-label">Dashboard</p>
       {items.map((item) => (
         <Link
           key={item.href}

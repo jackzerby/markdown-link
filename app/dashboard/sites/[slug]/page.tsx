@@ -46,20 +46,20 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
     <section className="stack">
       <div className="site-head">
         <h1>{site.title ?? slug}</h1>
-        <p>{site.description ?? "markdown publish"}</p>
+        <p>{site.description ?? "Published markdown file"}</p>
       </div>
 
       {claimed === "1" && (
         <div className="notice stack">
           {user.planTier === "HOBBY" ? (
-            <p>publish claimed. it is now tied to your account and will not expire.</p>
+            <p>Link claimed — it's tied to your account and will never expire.</p>
           ) : (
             <>
-              <p>publish claimed. it is now tied to your account.</p>
+              <p>Link claimed — it's tied to your account.</p>
               <p>
-                free links still expire.{" "}
-                <Link href={`/dashboard/plan?${planParams.toString()}`}>upgrade to pro</Link>{" "}
-                to keep important ones permanent.
+                Free links still expire after 7 days.{" "}
+                <Link href={`/dashboard/plan?${planParams.toString()}`}>Upgrade to Pro</Link>{" "}
+                to keep this one permanent.
               </p>
             </>
           )}
@@ -67,14 +67,14 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
       )}
 
       <div className="viewer-meta stack">
-        <p>slug: {site.slug}</p>
+        <p>URL path: {site.slug}</p>
         <p>{site.expiresAt ? `expires ${relativeDate(site.expiresAt)}` : "permanent"}</p>
-        <p>{site.visibility === "PASSWORD" ? "password protected" : site.claim?.claimedAt ? "claimed" : "owned"}</p>
+        <p>{site.visibility === "PASSWORD" ? "Password protected" : site.claim?.claimedAt ? "Yours (claimed)" : "Yours"}</p>
         <div className="inline-actions">
           <Link href={`/p/${site.slug}`}>public</Link>
           <Link href={`/p/${site.slug}/raw`}>raw</Link>
           {user.planTier !== "HOBBY" ? (
-            <Link href={`/dashboard/plan?${planParams.toString()}`}>see pro</Link>
+            <Link href={`/dashboard/plan?${planParams.toString()}`}>Upgrade to Pro</Link>
           ) : null}
         </div>
       </div>
@@ -90,7 +90,7 @@ export default async function SiteDetailPage({ params, searchParams }: SiteDetai
       <form action={`/api/publishes/${site.slug}/password`} method="post">
         <input name="intent" type="hidden" value="clear" />
         <button className="button secondary" type="submit">
-          clear password
+          Remove password
         </button>
       </form>
 

@@ -80,7 +80,7 @@ sharing. Web UI with syntax highlighting and markdown rendering.
 **Where it falls short:**
 - SSH-based — clever but unfamiliar UX for most developers.
 - No accounts, no permanence, no password protection.
-- No custom domains or branding.
+- No extra branding layer.
 
 **Our advantage:** Familiar CLI UX (`markdown.link ./file.md`), accounts, Pro tier
 for permanence, password protection.

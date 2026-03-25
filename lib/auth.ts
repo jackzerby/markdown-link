@@ -263,7 +263,6 @@ export const dashboardUserSelect = Prisma.validator<Prisma.UserDefaultArgs>()({
         updatedAt: "desc",
       },
     },
-    domains: true,
     supportRequests: {
       orderBy: { createdAt: "desc" },
       take: 10,

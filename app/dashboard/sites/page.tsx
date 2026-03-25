@@ -103,8 +103,8 @@ export default async function DashboardSitesPage({
       `}</style>
 
       <div className="section-head">
-        <h1>Sites</h1>
-        <p>Your published markdown files.</p>
+        <h1>Links</h1>
+        <p>Markdown files you've published.</p>
       </div>
 
       {error ? <p className="error">{error}</p> : null}
@@ -112,7 +112,7 @@ export default async function DashboardSitesPage({
       <DashboardPublishForm initialError={error} />
 
       <div className="site-grid">
-        {sites.length === 0 ? <p>no sites yet.</p> : null}
+        {sites.length === 0 ? <p>No links yet. Publish your first markdown file above, or use the CLI.</p> : null}
         {sites.map((site) => (
           <article key={site.id} className="site-card stack">
             <h2>

@@ -132,8 +132,7 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
         <div className="auth-head">
           <h1>Enter your code</h1>
           <p>
-            Sent to <strong>{params.email ?? "your email"}</strong>. If it does not show up,
-            go back and send a new one.
+            Sent to <strong>{params.email ?? "your email"}</strong>. Check your inbox — it usually arrives within 30 seconds.
           </p>
         </div>
 
@@ -163,7 +162,7 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
             <p>Need another code?</p>
             <button type="submit">Send a new one</button>
           </div>
-          <p>Check spam if it does not land quickly.</p>
+          <p>Check spam if you don't see it within a minute.</p>
         </form>
       </div>
     </main>

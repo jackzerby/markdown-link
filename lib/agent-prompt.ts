@@ -1,7 +1,7 @@
-export const agentInstallPrompt = `Install mdshare:
+export const agentInstallPrompt = `Install mdshare (publishes markdown files to shareable URLs):
 curl -fsSL https://mdshare.link/install.sh | bash
 
-Publish the markdown file I want to share:
+Publish a markdown file:
 mdshare ./plan.md
 
 Return the public URL.`;

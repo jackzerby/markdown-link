@@ -41,14 +41,14 @@ export function MarkdownFooterCta() {
   return (
     <div className="markdown-footer-cta">
       <button className="markdown-footer-button" onClick={handleCopy} type="button">
-        {status === "copied" ? "copied for your agent" : "copy this for your agent"}
+        {status === "copied" ? "Copied — paste into your agent" : "Copy install command"}
       </button>
       <p className="markdown-footer-note">
         {status === "copied"
           ? "Paste it into Claude, Codex, or your agent."
           : status === "error"
             ? "Copy failed. Try again."
-            : "Steal the exact workflow."}
+            : "Use the same workflow."}
       </p>
     </div>
   );

@@ -100,20 +100,20 @@ export async function sendSignInCodeEmail(input: {
 
   const text = input.claimPath
     ? [
-        "You're one step away from keeping this publish tied to your account.",
+        "Sign in to claim this link and tie it to your account.",
         "",
         `Code: ${input.code}`,
         "",
-        "Claiming the publish attaches it to your account. Pro keeps it permanent.",
+        "Once claimed, upgrade to Pro to keep it live permanently.",
         "",
-        `Claim link: ${absoluteUrl(input.claimPath)}`,
+        `Claim here: ${absoluteUrl(input.claimPath)}`,
       ].join("\n")
     : [
         "Use this code to sign in to mdshare.",
         "",
         `Code: ${input.code}`,
         "",
-        "Paste the code into the verify screen to finish signing in.",
+        "Enter this code on the sign-in page to continue.",
       ].join("\n");
 
   if (!resend) {

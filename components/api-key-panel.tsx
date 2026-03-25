@@ -52,17 +52,17 @@ export function ApiKeyPanel({ existingKeys }: ApiKeyPanelProps) {
     <section className="stack">
       <div className="section-head">
         <h1>API key</h1>
-        <p>Use this for CLI publishing.</p>
+        <p>Use an API key to publish from the CLI without signing in each time.</p>
       </div>
 
       <button className="button" disabled={pending} onClick={generateKey} type="button">
-        {pending ? "creating..." : "create new key"}
+        {pending ? "Creating..." : "Create new key"}
       </button>
 
       {plainTextKey ? (
         <div className="notice stack">
           <div className="inline-actions">
-            <p>shown once</p>
+            <p>Copy this now — it won't be shown again</p>
             <button className="text-button" onClick={copyKey} type="button">
               {copyState === "copied" ? "copied" : copyState === "error" ? "copy failed" : "copy key"}
             </button>
@@ -74,7 +74,7 @@ export function ApiKeyPanel({ existingKeys }: ApiKeyPanelProps) {
       {error ? <p className="error">{error}</p> : null}
 
       <div className="list">
-        {existingKeys.length === 0 ? <p>no active api keys.</p> : null}
+        {existingKeys.length === 0 ? <p>No active API keys.</p> : null}
         {existingKeys.map((key) => (
           <div key={key.id} className="list-row">
             <span>{key.name}</span>

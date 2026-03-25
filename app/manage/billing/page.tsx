@@ -54,7 +54,7 @@ export default async function BillingManagementPage({
         <div className="billing-nav">
           <span>billing</span>
           <div className="billing-links">
-            <Link href="/dashboard/sites">workspace</Link>
+            <Link href="/dashboard/sites">Links</Link>
             <Link href="/dashboard/plan">plan</Link>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default async function BillingManagementPage({
             Back to plan
           </Link>
           <Link className="dashboard-text-link" href="/dashboard/sites">
-            Back to workspace
+            Back to links
           </Link>
         </div>
       </section>

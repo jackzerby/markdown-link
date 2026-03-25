@@ -59,8 +59,7 @@ web pages from the terminal.
 One command, no signup. The viewer renders markdown with a toggle between
 rendered and raw. Password protection built in.
 
-Free links expire after 7 days. Pro ($5/mo) keeps them permanent with
-custom domains.
+Free links expire after 7 days. Pro ($5/mo) keeps them permanent.
 
 Built with Next.js, Prisma, and Stripe if anyone's curious about the stack.
 

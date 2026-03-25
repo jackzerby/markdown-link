@@ -13,7 +13,6 @@ Two plans. One price. No tiers to compare.
 | Links | Expire (default 7 days) | Permanent |
 | Active sites | 50 | Unlimited |
 | Storage | 10 GB | 100 GB |
-| Custom domains | No | Yes |
 | API keys | Yes | Yes |
 
 Internal schema uses `HOBBY` enum. All user-facing copy says **Pro**.

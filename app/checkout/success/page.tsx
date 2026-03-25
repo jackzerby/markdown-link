@@ -87,12 +87,12 @@ export default function CheckoutSuccessPage() {
 
         <div className="auth-head">
           <h1>Payment received</h1>
-          <p>Your plan is updating. This usually takes a moment. Head back to your links and keep the important ones live.</p>
+          <p>Your Pro plan is now active. Your existing links will no longer expire.</p>
         </div>
 
         <div className="auth-actions">
           <Link href="/dashboard/sites" className="primary">
-            Go keep a link live
+            View your links
           </Link>
           <Link href="/dashboard/plan" className="secondary">
             View plan

@@ -22,7 +22,7 @@ Status: mostly in place
 
 Priority: now
 
-- custom domains with real verification
+- stronger account-level controls
 - richer link settings
 - duplicate and republish flows
 - deletion and recovery safeguards
@@ -71,4 +71,3 @@ and a predictable API.
 3. publish analytics
 4. service-account style API keys
 5. recurring and scheduled publishes
-

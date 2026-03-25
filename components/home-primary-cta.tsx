@@ -56,7 +56,7 @@ export function HomePrimaryCta() {
       </div>
 
       <button className={`home-copy-button${status === "copied" ? " is-copied" : ""}`} onClick={handleCopy} type="button">
-        {status === "copied" ? "copied for your agent" : "grab the snippet"}
+        {status === "copied" ? "Copied — paste into your agent" : "Copy install command"}
       </button>
 
       <p className="home-primary-note">
@@ -64,7 +64,7 @@ export function HomePrimaryCta() {
           ? "Paste it into Claude, Codex, or your agent."
           : status === "error"
             ? "Copy failed. Try again."
-            : "No signup required."}
+            : "No account required."}
       </p>
     </div>
   );

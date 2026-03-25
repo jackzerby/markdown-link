@@ -69,7 +69,6 @@ and flow are verified. First batch of launch posts should point at something rea
 
 ## Deferred
 
-- Custom domains (infrastructure, not needed for launch)
 - Presigned S3 uploads (optimization, relay works)
 - Background jobs for cleanup/billing (nice-to-have)
 - Team/collaboration features (future tier)
@@ -434,8 +433,8 @@ No task needed. This was part of the unstaged work.
 
 **Deferred (next cycle):**
 
-6. **Custom domains** — Listed in pricing as Pro feature but not yet implemented.
-   Infrastructure work, not urgent for launch.
+6. **Additional infrastructure work** — Deferred out of the product scope.
+   The launch stays focused on clean markdown links, not extra hosting complexity.
 
 7. **Abuse reporting** — Every competitor HN thread raises this. We have
    password protection and expiration, but no report mechanism. File when

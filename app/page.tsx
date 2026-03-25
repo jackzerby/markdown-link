@@ -298,9 +298,9 @@ export default function HomePage() {
         <div className="home-body">
           <h1>Share markdown.</h1>
           <p className="home-sub">
-            Publish a markdown file as a clean, readable link.
+            Publish any markdown file as a shareable link.
             <br />
-            One command from Claude Code or Codex.
+            One command from your terminal or AI agent.
           </p>
           <HomePrimaryCta />
           <div className="home-proof">
@@ -318,13 +318,13 @@ export default function HomePage() {
                 <li>Collect feedback in shared doc</li>
               </ul>
             </div>
-            <p className="home-sample-label">1,000+ docs shared so far</p>
-            <p className="home-sample-label">Free links expire after 7 days. Keep them live for $5/mo.</p>
+            <p className="home-sample-label">1,000+ links shared so far</p>
+            <p className="home-sample-label">Free links expire after 7 days. Keep yours permanent for $5/mo.</p>
           </div>
         </div>
 
         <div className="home-links">
-          <Link href="/p/demo">demo</Link>
+          <Link href="/p/demo">example</Link>
           <Link href="/auth/start">sign in</Link>
         </div>
       </div>

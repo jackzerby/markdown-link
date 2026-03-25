@@ -32,14 +32,14 @@ export function DashboardPublishForm({ initialError }: DashboardPublishFormProps
 
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) {
-        setError(payload.error ?? "Could not publish markdown.");
+        setError(payload.error ?? "Publishing failed. Check your markdown and try again.");
         setPending(false);
         return;
       }
 
       window.location.assign(`/dashboard/sites/${payload.slug}`);
     } catch {
-      setError("Could not publish markdown.");
+      setError("Publishing failed. Check your markdown and try again.");
       setPending(false);
     }
   }
@@ -49,20 +49,20 @@ export function DashboardPublishForm({ initialError }: DashboardPublishFormProps
       <input
         name="title"
         onChange={(event) => setTitle(event.target.value)}
-        placeholder="title"
+        placeholder="Page title (optional)"
         value={title}
       />
       <textarea
         name="markdown"
         onChange={(event) => setMarkdown(event.target.value)}
-        placeholder="# plan"
+        placeholder="# Your markdown here"
         required
         value={markdown}
       />
       <input name="finalize" type="hidden" value="true" />
       {error ? <p className="error">{error}</p> : null}
       <button className="button" disabled={pending} type="submit">
-        {pending ? "publishing..." : "publish"}
+        {pending ? "Publishing..." : "Publish"}
       </button>
     </form>
   );

@@ -77,22 +77,22 @@ export default async function DashboardSupportPage({
 
       <div className="section-head">
         <h1>Support</h1>
-        <p>Something broken? Let us know.</p>
+        <p>Questions or issues? We're here to help.</p>
       </div>
 
       {error ? <p className="error">{error}</p> : null}
       {success ? <p>{success}</p> : null}
 
       <form action="/api/dashboard/support" className="stack" method="post">
-        <input name="subject" placeholder="subject" required />
-        <textarea name="message" placeholder="message" required />
+        <input name="subject" placeholder="What's this about?" required />
+        <textarea name="message" placeholder="Describe what happened..." required />
         <button className="button" type="submit">
-          send
+          Send message
         </button>
       </form>
 
       <div className="list">
-        {requests.length === 0 ? <p>no support messages yet.</p> : null}
+        {requests.length === 0 ? <p>No messages yet.</p> : null}
         {requests.map((request) => (
           <div key={request.id} className="site-card stack">
             <p>{request.subject}</p>

@@ -69,7 +69,6 @@ Claim links, keep them live, add passwords, and use your domain.
 ### Paid
 
 - permanent links
-- custom domains
 - stronger control and team workflows
 - fewer expiry surprises
 

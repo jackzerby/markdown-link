@@ -10,7 +10,7 @@ and Resend.
 - anonymous publish + claim flow
 - direct markdown publish flow and manifest upload/finalize flow
 - CLI publish command and installer scripts
-- dashboard routes for sites, api keys, plan, domains, and support
+- dashboard routes for links, api keys, plan, and support
 - public markdown viewer routes
 - password-protected publish flow
 - storage adapter with local `.data/` dev mode and S3-compatible production mode
@@ -181,4 +181,4 @@ The service now supports two publish modes:
 
 - move upload traffic from server relay to presigned direct-to-blob uploads
 - add richer site management actions like duplicate/delete/password audit history
-- add background jobs for cleanup, billing retries, and domain revalidation
+- add background jobs for cleanup and billing retries

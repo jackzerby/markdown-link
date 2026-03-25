@@ -10,7 +10,6 @@ export type UsageSnapshot = {
   totalSites: number;
   monthlyPublishes: number;
   apiKeys: number;
-  domains: number;
   storageBytes: number;
   siteLimit: number | null;
   storageLimitBytes: number;
@@ -39,7 +38,7 @@ export async function getUsageSnapshot(userId: string, planTier: PlanTier): Prom
   const now = new Date();
   const monthStart = startOfMonth(now);
 
-  const [sites, monthlyPublishes, apiKeys, domains, storageAggregate] = await Promise.all([
+  const [sites, monthlyPublishes, apiKeys, storageAggregate] = await Promise.all([
     db.site.findMany({
       where: { ownerUserId: userId },
       select: {
@@ -60,11 +59,6 @@ export async function getUsageSnapshot(userId: string, planTier: PlanTier): Prom
       where: {
         userId,
         revokedAt: null,
-      },
-    }),
-    db.domain.count({
-      where: {
-        userId,
       },
     }),
     db.siteFile.aggregate({
@@ -91,7 +85,6 @@ export async function getUsageSnapshot(userId: string, planTier: PlanTier): Prom
     totalSites: sites.length,
     monthlyPublishes,
     apiKeys,
-    domains,
     storageBytes: storageAggregate._sum.size ?? 0,
     siteLimit: planTier === PlanTier.HOBBY ? null : env.FREE_MAX_SITES,
     storageLimitBytes:

@@ -26,7 +26,7 @@ What stands out from the published skill and docs:
 - the install path is explicit and copyable for agent tools
 - the API and scripting surface are part of the product story, not hidden
 - the free-vs-authenticated differences are easy to understand
-- handles, links, claim codes, and custom domains extend the product after the
+- handles, links, and claim codes extend the product after the
   first successful publish instead of blocking it
 
 Lessons for markdown.link:

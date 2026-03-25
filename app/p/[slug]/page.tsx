@@ -62,7 +62,7 @@ export default async function PublishViewerPage({ params }: PublishViewerPagePro
           <input name="password" placeholder="password" required type="password" />
           <input name="intent" type="hidden" value="unlock" />
           <button className="button" type="submit">
-            unlock
+            Unlock
           </button>
         </form>
       </main>
@@ -76,7 +76,10 @@ export default async function PublishViewerPage({ params }: PublishViewerPagePro
     return (
       <main className="publish-view">
         {publishViewStyles}
-        <p className="muted">this link has expired.</p>
+        <div className="stack">
+          <p>This link has expired.</p>
+          <p className="muted">Free links expire after 7 days. The author can upgrade to Pro to keep links permanent.</p>
+        </div>
       </main>
     );
   }

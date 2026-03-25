@@ -36,7 +36,7 @@ export default async function DashboardPlanPage({
         <p>
           {isPro
             ? "Your links are permanent. Manage billing and usage below."
-            : "Free links expire in 7 days. Pro ($5/mo) keeps important links live, branded, and ready to share."}
+            : "Free links expire in 7 days. Pro ($5/mo) keeps them permanent."}
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export default async function DashboardPlanPage({
 
       {!isPro && contextSlug && contextName ? (
         <div className="dashboard-panel stack">
-          <p className="dashboard-panel-label">the link you care about</p>
+          <p className="dashboard-panel-label">The link you came from</p>
           <div className="dashboard-list">
             <p>{contextName}</p>
             <p>
@@ -54,7 +54,7 @@ export default async function DashboardPlanPage({
                   ? "This is the link you were about to claim."
                   : "This is the link you were just looking at."}
             </p>
-            <p>Pro keeps important links live on the same URL.</p>
+            <p>Upgrade so this link never expires.</p>
           </div>
           <div className="inline-actions">
             <Link href={`/p/${contextSlug}`}>open link</Link>
@@ -67,12 +67,12 @@ export default async function DashboardPlanPage({
         <article className="dashboard-stat">
           <p className="dashboard-stat-label">active links</p>
           <p className="dashboard-stat-value">{siteUsageLabel}</p>
-          <p className="muted">{isPro ? "permanent links" : "free tier cap"}</p>
+          <p className="muted">{isPro ? "Permanent links" : "Free tier cap"}</p>
         </article>
         <article className="dashboard-stat">
           <p className="dashboard-stat-label">storage</p>
           <p className="dashboard-stat-value">{storageUsageLabel}</p>
-          <p className="muted">{isPro ? "pro storage" : "free storage"}</p>
+          <p className="muted">{isPro ? "Pro storage" : "Free storage"}</p>
         </article>
         <article className="dashboard-stat">
           <p className="dashboard-stat-label">publishes this month</p>
@@ -80,11 +80,9 @@ export default async function DashboardPlanPage({
           <p className="muted">{usage.expiringSites} expiring</p>
         </article>
         <article className="dashboard-stat">
-          <p className="dashboard-stat-label">api keys + domains</p>
-          <p className="dashboard-stat-value">
-            {usage.apiKeys} keys / {usage.domains} domains
-          </p>
-          <p className="muted">automation + branded links</p>
+          <p className="dashboard-stat-label">api keys</p>
+          <p className="dashboard-stat-value">{usage.apiKeys}</p>
+          <p className="muted">CLI publishing without signing in each time</p>
         </article>
       </div>
 
@@ -93,7 +91,7 @@ export default async function DashboardPlanPage({
         <div className="dashboard-list">
           <p>Permanent links</p>
           <p>Higher storage and publish limits</p>
-          <p>{isPro ? "Billing via Stripe" : "Custom domains"}</p>
+          <p>API-key publishing from the CLI</p>
         </div>
       </div>
 
@@ -102,8 +100,8 @@ export default async function DashboardPlanPage({
           <p className="dashboard-panel-label">why people upgrade</p>
           <div className="dashboard-list">
             <p>Keep a launch note, plan, or memo on the same URL</p>
-            <p>Share on your own domain when the link matters</p>
-            <p>Use mdshare as part of your daily workflow without expiry anxiety</p>
+            <p>Publish from the CLI without thinking about expiry</p>
+            <p>Publish daily without worrying about links expiring</p>
           </div>
         </div>
       )}
@@ -116,17 +114,17 @@ export default async function DashboardPlanPage({
         ) : (
           <form action="/api/stripe/checkout" method="post">
             <button className="button" type="submit">
-              Upgrade to pro
+              Upgrade to Pro
             </button>
           </form>
         )}
         <Link className="dashboard-text-link" href="/dashboard/sites">
-          Back to sites
+          Back to links
         </Link>
       </div>
 
       {!isPro && (
-        <p className="muted">Best for quick shares: free expires. Best for docs you care about: Pro keeps them live.</p>
+        <p className="muted">Free is great for quick shares. Pro is for links you need to keep.</p>
       )}
     </section>
   );

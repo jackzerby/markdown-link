@@ -115,8 +115,7 @@ No signup wall, no clutter, no ads.
 ## Pricing
 
 Publishing without an account is free — links expire after 7 days. Sign up
-for Pro ($5/mo) and links stay permanent. You also get custom domains, a
-higher storage limits.
+for Pro ($5/mo) and links stay permanent, with higher storage limits.
 
 For CI/CD usage, Pro is the right tier — you want release note URLs to stay
 live.

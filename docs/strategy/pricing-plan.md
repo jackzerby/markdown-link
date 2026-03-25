@@ -29,7 +29,6 @@ The paid plan should remove friction, not add complexity.
 Suggested paid benefits:
 
 - permanent links
-- custom domains
 - higher usage limits
 - more reliable agent and API-key workflows
 
@@ -43,7 +42,6 @@ Free:
 Paid:
 
 - keep important links live
-- share on your own domain
 - use markdown.link as part of your daily workflow
 
 ## What to avoid

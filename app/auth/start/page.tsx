@@ -96,12 +96,12 @@ export default async function AuthStartPage({ searchParams }: AuthStartPageProps
       <div className="auth-frame">
         <nav>
           <Link href="/">mdshare</Link>
-          <Link href="/p/demo">demo</Link>
+          <Link href="/p/demo">example</Link>
         </nav>
 
         <div className="auth-head">
           <h1>Sign in</h1>
-          <p>We&apos;ll email you a code. No password needed. Usually takes under a minute.</p>
+          <p>We&apos;ll email you a 6-digit code. No password needed.</p>
         </div>
 
         {params.message ? <p className="auth-notice">{params.message}</p> : null}
