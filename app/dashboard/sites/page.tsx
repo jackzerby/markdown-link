@@ -30,39 +30,17 @@ export default async function DashboardSitesPage({
           gap: 24px;
         }
 
-        .dashboard-sites-view .section-head h1 {
-          font-size: clamp(1.9rem, 3vw, 2.8rem);
-          letter-spacing: -0.04em;
-        }
-
-        .dashboard-sites-view .section-head p {
-          max-width: 60ch;
-          color: var(--muted);
-        }
-
         .dashboard-sites-view form {
           display: grid;
           gap: 12px;
-          padding: 20px;
+          padding: 18px;
           background: var(--surface);
-          border-radius: 8px;
-        }
-
-        .dashboard-sites-view input,
-        .dashboard-sites-view textarea {
           border: 1px solid var(--line-strong);
           border-radius: 6px;
-          background: var(--bg);
         }
 
         .dashboard-sites-view textarea {
-          min-height: 220px;
-        }
-
-        .dashboard-sites-view .button {
-          border-radius: 6px;
-          border: 0;
-          align-self: start;
+          min-height: 160px;
         }
 
         .dashboard-sites-view .site-grid {
@@ -70,9 +48,9 @@ export default async function DashboardSitesPage({
         }
 
         .dashboard-sites-view .site-card {
-          padding: 18px 0;
+          padding: 16px 0;
           border: 0;
-          border-top: 1px solid rgba(0, 0, 0, 0.08);
+          border-top: 1px solid var(--line-strong);
           background: transparent;
         }
 
@@ -85,13 +63,23 @@ export default async function DashboardSitesPage({
           line-height: 1.4;
         }
 
+        .dashboard-sites-view .site-card h2 a {
+          text-decoration: none;
+          color: var(--text);
+        }
+
+        .dashboard-sites-view .site-card h2 a:hover {
+          color: var(--accent);
+        }
+
         .dashboard-sites-view .site-meta {
           color: var(--muted);
+          font-size: 0.9rem;
         }
 
         .dashboard-sites-view .inline-actions {
           gap: 14px;
-          font-size: 0.92rem;
+          font-size: 0.9rem;
         }
 
         @media (max-width: 820px) {
@@ -112,7 +100,7 @@ export default async function DashboardSitesPage({
       <DashboardPublishForm initialError={error} />
 
       <div className="site-grid">
-        {sites.length === 0 ? <p>No links yet. Publish your first markdown file above, or use the CLI.</p> : null}
+        {sites.length === 0 ? <div className="empty-state"><p>No links yet. Publish your first markdown file above, or use the CLI.</p></div> : null}
         {sites.map((site) => (
           <article key={site.id} className="site-card stack">
             <h2>
@@ -120,7 +108,7 @@ export default async function DashboardSitesPage({
             </h2>
             <div className="site-meta">
               <span>{site.slug}</span>
-              <span>{site.expiresAt ? `expires ${relativeDate(site.expiresAt)}` : "permanent"}</span>
+              <span className={site.expiresAt ? "status-badge expiring" : "status-badge permanent"}>{site.expiresAt ? `expires ${relativeDate(site.expiresAt)}` : "permanent"}</span>
             </div>
             <div className="inline-actions">
               <Link href={`/p/${site.slug}`}>view</Link>

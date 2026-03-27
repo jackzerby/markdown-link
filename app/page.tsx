@@ -1,8 +1,15 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
+import { getCurrentUser } from "@/lib/auth";
 import { HomePrimaryCta } from "@/components/home-primary-cta";
+import { TerminalFrame } from "@/components/terminal-frame";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const user = await getCurrentUser();
+  if (user) {
+    redirect("/dashboard/sites");
+  }
   return (
     <main className="home">
       <style>{`
@@ -15,7 +22,6 @@ export default function HomePage() {
         }
 
         .home-frame {
-          width: min(560px, 100%);
           display: flex;
           flex-direction: column;
           gap: 24px;
@@ -29,7 +35,7 @@ export default function HomePage() {
 
         .home h1 {
           margin: 0;
-          font-size: clamp(2.4rem, 7vw, 4.4rem);
+          font-size: clamp(1.8rem, 5vw, 2.8rem);
           line-height: 0.95;
           letter-spacing: -0.06em;
           font-weight: 600;
@@ -60,42 +66,8 @@ export default function HomePage() {
           overflow-wrap: anywhere;
         }
 
-        .home-sample {
-          display: grid;
-          gap: 10px;
-          margin-top: 4px;
-        }
-
         .home-sample-label {
           margin: 0;
-          color: var(--muted);
-        }
-
-        .home-sample-doc {
-          display: grid;
-          gap: 8px;
-          padding: 18px;
-          border-radius: 14px;
-          background: var(--surface);
-        }
-
-        .home-sample-doc h2,
-        .home-sample-doc p,
-        .home-sample-doc ul {
-          margin: 0;
-        }
-
-        .home-sample-doc h2 {
-          font-size: 1rem;
-          font-weight: 600;
-        }
-
-        .home-sample-doc p {
-          max-width: 44ch;
-        }
-
-        .home-sample-doc ul {
-          padding-left: 18px;
           color: var(--muted);
         }
 
@@ -114,27 +86,27 @@ export default function HomePage() {
           align-items: center;
           justify-content: center;
           min-height: 48px;
-          padding: 0 20px;
-          border: 0;
-          border-radius: 999px;
-          background: var(--text);
-          color: var(--bg);
+          padding: 0 24px;
+          border: 2px solid var(--btn-border);
+          border-radius: 6px;
+          background: var(--btn-bg);
+          color: var(--btn-text);
           cursor: pointer;
-          transition:
-            transform 120ms ease,
-            opacity 120ms ease;
+          box-shadow: 4px 4px 0 var(--btn-shadow);
+          transition: transform 80ms ease, box-shadow 80ms ease;
         }
 
         .home-copy-button:hover {
-          transform: translateY(-1px);
+          transform: translate(-1px, -1px);
+          box-shadow: 5px 5px 0 var(--btn-shadow);
         }
 
         .home-copy-button:active {
-          transform: translateY(1px) scale(0.985);
+          transform: translate(2px, 2px);
+          box-shadow: 1px 1px 0 var(--btn-shadow);
         }
 
         .home-copy-button.is-copied {
-          opacity: 0.96;
           animation: home-copy-pop 320ms ease;
         }
 
@@ -279,55 +251,42 @@ export default function HomePage() {
 
         .home-links {
           display: flex;
-          gap: 14px;
+          gap: 16px;
           flex-wrap: wrap;
-          color: var(--muted);
+          margin-top: 8px;
+          padding-top: 16px;
+          border-top: 1px solid var(--line);
         }
 
         .home-links a {
-          color: var(--muted);
-          text-decoration: none;
+          color: var(--text);
+          text-decoration: underline;
+          text-underline-offset: 0.18em;
         }
 
         .home-links a:hover {
-          color: var(--text);
+          color: var(--accent);
         }
       `}</style>
 
-      <div className="home-frame">
+      <TerminalFrame>
         <div className="home-body">
           <h1>Share markdown.</h1>
           <p className="home-sub">
-            Publish any markdown file as a shareable link.
-            <br />
-            One command from your terminal or AI agent.
+            One command. No account required.
           </p>
-          <HomePrimaryCta />
           <div className="home-proof">
-            <span>Typical flow:</span>
             <code>mdshare ./plan.md → mdshare.link/p/abcd-1234</code>
           </div>
-          <div className="home-sample">
-            <p className="home-sample-label">What the link looks like:</p>
-            <div aria-hidden="true" className="home-sample-doc">
-              <h2>Q3 launch plan</h2>
-              <p>Timeline, owners, and open questions — one link instead of a Slack wall.</p>
-              <ul>
-                <li>Landing page — ship by July 12</li>
-                <li>Announce on Twitter + changelog</li>
-                <li>Collect feedback in shared doc</li>
-              </ul>
-            </div>
-            <p className="home-sample-label">1,000+ links shared so far</p>
-            <p className="home-sample-label">Free links expire after 7 days. Keep yours permanent for $5/mo.</p>
-          </div>
+          <HomePrimaryCta />
+          <p className="home-sample-label">Free for 7 days. Permanent for $5/mo.</p>
         </div>
 
         <div className="home-links">
           <Link href="/p/demo">example</Link>
           <Link href="/auth/start">sign in</Link>
         </div>
-      </div>
+      </TerminalFrame>
     </main>
   );
 }

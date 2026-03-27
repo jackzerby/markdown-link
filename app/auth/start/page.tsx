@@ -1,4 +1,7 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { getCurrentUser } from "@/lib/auth";
+import { TerminalFrame } from "@/components/terminal-frame";
 
 type AuthStartPageProps = {
   searchParams: Promise<{
@@ -12,6 +15,10 @@ type AuthStartPageProps = {
 
 export default async function AuthStartPage({ searchParams }: AuthStartPageProps) {
   const params = await searchParams;
+  const user = await getCurrentUser();
+  if (user) {
+    redirect(params.next ?? "/dashboard/sites");
+  }
 
   return (
     <main className="auth-shell">
@@ -22,29 +29,6 @@ export default async function AuthStartPage({ searchParams }: AuthStartPageProps
           align-items: center;
           justify-content: center;
           padding: 32px 20px;
-        }
-
-        .auth-frame {
-          width: min(400px, 100%);
-          display: flex;
-          flex-direction: column;
-          gap: 32px;
-        }
-
-        .auth-shell nav {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          color: var(--muted);
-        }
-
-        .auth-shell nav a {
-          color: var(--muted);
-          text-decoration: none;
-        }
-
-        .auth-shell nav a:hover {
-          color: var(--text);
         }
 
         .auth-head {
@@ -79,12 +63,24 @@ export default async function AuthStartPage({ searchParams }: AuthStartPageProps
         }
 
         .auth-form button {
-          padding: 10px 14px;
-          border: 0;
+          padding: 10px 16px;
+          border: 2px solid var(--btn-border);
           border-radius: 6px;
-          background: var(--text);
-          color: var(--bg);
+          background: var(--btn-bg);
+          color: var(--btn-text);
           cursor: pointer;
+          box-shadow: 4px 4px 0 var(--btn-shadow);
+          transition: transform 80ms ease, box-shadow 80ms ease;
+        }
+
+        .auth-form button:hover {
+          transform: translate(-1px, -1px);
+          box-shadow: 5px 5px 0 var(--btn-shadow);
+        }
+
+        .auth-form button:active {
+          transform: translate(2px, 2px);
+          box-shadow: 1px 1px 0 var(--btn-shadow);
         }
 
         .auth-notice {
@@ -93,12 +89,7 @@ export default async function AuthStartPage({ searchParams }: AuthStartPageProps
         }
       `}</style>
 
-      <div className="auth-frame">
-        <nav>
-          <Link href="/">mdshare</Link>
-          <Link href="/p/demo">example</Link>
-        </nav>
-
+      <TerminalFrame>
         <div className="auth-head">
           <h1>Sign in</h1>
           <p>We&apos;ll email you a 6-digit code. No password needed.</p>
@@ -119,7 +110,7 @@ export default async function AuthStartPage({ searchParams }: AuthStartPageProps
           <input name="claimToken" type="hidden" value={params.claimToken ?? ""} />
           <button type="submit">Send code</button>
         </form>
-      </div>
+      </TerminalFrame>
     </main>
   );
 }

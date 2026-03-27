@@ -8,6 +8,23 @@ type MarkdownCopyButtonProps = {
   targetId: string;
 };
 
+function ClipboardIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="2" width="6" height="3" rx="1" />
+      <path d="M5 3H4a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-1" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3.5 8.5L6.5 11.5L12.5 4.5" />
+    </svg>
+  );
+}
+
 export function MarkdownCopyButton({
   mode,
   source,
@@ -63,15 +80,19 @@ export function MarkdownCopyButton({
     }
   }
 
+  const tooltip =
+    status === "copied"
+      ? "Copied!"
+      : status === "error"
+        ? "Failed"
+        : mode === "raw"
+          ? "Copy markdown"
+          : "Copy text";
+
   return (
-    <button className="markdown-copy" onClick={handleCopy} type="button">
-      {status === "copied"
-        ? "copied"
-        : status === "error"
-          ? "copy failed"
-          : mode === "raw"
-            ? "Copy markdown"
-            : "Copy text"}
+    <button className="markdown-copy" onClick={handleCopy} type="button" aria-label={tooltip}>
+      <span className="copy-tooltip">{tooltip}</span>
+      {status === "copied" ? <CheckIcon /> : <ClipboardIcon />}
     </button>
   );
 }

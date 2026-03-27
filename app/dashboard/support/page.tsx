@@ -58,7 +58,7 @@ export default async function DashboardSupportPage({
 
         .support-view .site-card {
           border: 0;
-          border-top: 1px solid rgba(0, 0, 0, 0.08);
+          border-top: 1px solid var(--line);
           background: transparent;
           padding: 16px 0;
         }
@@ -92,7 +92,7 @@ export default async function DashboardSupportPage({
       </form>
 
       <div className="list">
-        {requests.length === 0 ? <p>No messages yet.</p> : null}
+        {requests.length === 0 ? <div className="empty-state"><p>No messages yet.</p></div> : null}
         {requests.map((request) => (
           <div key={request.id} className="site-card stack">
             <p>{request.subject}</p>

@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { TerminalFrame } from "@/components/terminal-frame";
+
 export default function CheckoutSuccessPage() {
   return (
     <main className="auth-shell">
@@ -64,10 +66,23 @@ export default function CheckoutSuccessPage() {
         }
 
         .auth-actions .primary {
-          padding: 10px 14px;
+          padding: 10px 16px;
+          border: 2px solid var(--btn-border);
           border-radius: 6px;
-          background: var(--text);
-          color: var(--bg);
+          background: var(--btn-bg);
+          color: var(--btn-text);
+          box-shadow: 4px 4px 0 var(--btn-shadow);
+          transition: transform 80ms ease, box-shadow 80ms ease;
+        }
+
+        .auth-actions .primary:hover {
+          transform: translate(-1px, -1px);
+          box-shadow: 5px 5px 0 var(--btn-shadow);
+        }
+
+        .auth-actions .primary:active {
+          transform: translate(2px, 2px);
+          box-shadow: 1px 1px 0 var(--btn-shadow);
         }
 
         .auth-actions .secondary {
@@ -79,12 +94,7 @@ export default function CheckoutSuccessPage() {
         }
       `}</style>
 
-      <div className="auth-frame">
-        <nav>
-          <Link href="/">mdshare</Link>
-          <Link href="/dashboard/plan">plan</Link>
-        </nav>
-
+      <TerminalFrame>
         <div className="auth-head">
           <h1>Payment received</h1>
           <p>Your Pro plan is now active. Your existing links will no longer expire.</p>
@@ -98,7 +108,7 @@ export default function CheckoutSuccessPage() {
             View plan
           </Link>
         </div>
-      </div>
+      </TerminalFrame>
     </main>
   );
 }

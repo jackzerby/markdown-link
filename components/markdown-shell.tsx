@@ -2,7 +2,6 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { MarkdownCopyButton } from "@/components/markdown-copy-button";
-import { MarkdownFooterCta } from "@/components/markdown-footer-cta";
 
 type MarkdownShellProps = {
   source: string;
@@ -73,9 +72,8 @@ export function MarkdownShell({
       {brandFooter ? (
         <footer className="markdown-footer">
           <p>
-            <a href="/">Made with mdshare</a>
+            <a href="/">Made with mdshare</a>. Turn markdown into a clean public link from your terminal.
           </p>
-          <MarkdownFooterCta />
         </footer>
       ) : null}
     </section>

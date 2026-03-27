@@ -8,13 +8,13 @@ const siteHost = new URL(siteUrl).host;
 
 const demoMarkdown = `# project status update
 
-this page was published with one command:
-
-\`mdshare ./status.md\`
+this page was published with one command: \`mdshare ./status.md\`
 
 ## what you're looking at
 
-a rendered markdown page hosted at a clean URL. no account required to publish.
+a rendered markdown page hosted at a clean URL. no account required to publish. share plans, notes, specs, or anything else — one command, one link.
+
+> "we switched from google docs to mdshare for all internal specs. everything stays in git, sharing is instant." — a user, probably
 
 ## features
 
@@ -23,12 +23,31 @@ a rendered markdown page hosted at a clean URL. no account required to publish.
 - **raw view** — toggle to see the source markdown
 - **expiration** — free links expire after 7 days. pro keeps them permanent.
 
+### nested lists work too
+
+1. publish a file
+   - from the CLI: \`mdshare ./plan.md\`
+   - from an AI agent: paste the install command
+2. get a link back
+3. share it anywhere
+
+## status
+
+| milestone | owner | status | date |
+|-----------|-------|--------|------|
+| landing page | jack | shipped | jul 12 |
+| CLI v1 | jack | shipped | jul 15 |
+| pro billing | jack | shipped | jul 20 |
+| public launch | team | **next** | jul 28 |
+
 ## try it
 
 \`\`\`
 curl -fsSL ${siteUrl}/install.sh | bash
 mdshare ./notes.md
 \`\`\`
+
+---
 
 published with [${siteHost}](${siteUrl}).`;
 

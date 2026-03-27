@@ -2,17 +2,20 @@
 
 import { useState } from "react";
 
+type KeyEntry = {
+  id: string;
+  name: string;
+  prefix: string;
+  createdAt: string;
+  lastUsedAt: string | null;
+};
+
 type ApiKeyPanelProps = {
-  existingKeys: Array<{
-    id: string;
-    name: string;
-    prefix: string;
-    createdAt: string;
-    lastUsedAt: string | null;
-  }>;
+  existingKeys: KeyEntry[];
 };
 
 export function ApiKeyPanel({ existingKeys }: ApiKeyPanelProps) {
+  const [keys, setKeys] = useState<KeyEntry[]>(existingKeys);
   const [plainTextKey, setPlainTextKey] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,14 +35,23 @@ export function ApiKeyPanel({ existingKeys }: ApiKeyPanelProps) {
       return;
     }
     setPlainTextKey(payload.apiKey);
+    if (payload.id && payload.prefix) {
+      setKeys((prev) => [
+        {
+          id: payload.id,
+          name: payload.name ?? "default",
+          prefix: payload.prefix,
+          createdAt: new Date().toISOString(),
+          lastUsedAt: null,
+        },
+        ...prev,
+      ]);
+    }
     setPending(false);
   }
 
   async function copyKey() {
-    if (!plainTextKey) {
-      return;
-    }
-
+    if (!plainTextKey) return;
     try {
       await navigator.clipboard.writeText(plainTextKey);
       setCopyState("copied");
@@ -64,7 +76,7 @@ export function ApiKeyPanel({ existingKeys }: ApiKeyPanelProps) {
           <div className="inline-actions">
             <p>Copy this now — it won't be shown again</p>
             <button className="text-button" onClick={copyKey} type="button">
-              {copyState === "copied" ? "copied" : copyState === "error" ? "copy failed" : "copy key"}
+              {copyState === "copied" ? "Copied" : copyState === "error" ? "Copy failed" : "Copy key"}
             </button>
           </div>
           <pre>{plainTextKey}</pre>
@@ -73,20 +85,22 @@ export function ApiKeyPanel({ existingKeys }: ApiKeyPanelProps) {
 
       {error ? <p className="error">{error}</p> : null}
 
-      <div className="list">
-        {existingKeys.length === 0 ? <p>No active API keys.</p> : null}
-        {existingKeys.map((key) => (
-          <div key={key.id} className="list-row">
-            <span>{key.name}</span>
-            <span>{key.prefix}...</span>
-            <span>
-              {key.lastUsedAt
-                ? `last used ${new Date(key.lastUsedAt).toLocaleDateString()}`
-                : `created ${new Date(key.createdAt).toLocaleDateString()}`}
-            </span>
-          </div>
-        ))}
-      </div>
+      {keys.length > 0 ? (
+        <div className="list">
+          {keys.map((key) => (
+            <div key={key.id} className="list-row">
+              <span>{key.prefix}...</span>
+              <span>
+                {key.lastUsedAt
+                  ? `last used ${new Date(key.lastUsedAt).toLocaleDateString()}`
+                  : `created ${new Date(key.createdAt).toLocaleDateString()}`}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="empty-state"><p>No active API keys.</p></div>
+      )}
     </section>
   );
 }

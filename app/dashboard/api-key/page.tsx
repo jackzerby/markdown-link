@@ -36,7 +36,7 @@ export default async function DashboardApiKeyPage() {
 
         .api-key-view .list-row {
           border: 0;
-          border-top: 1px solid rgba(0, 0, 0, 0.08);
+          border-top: 1px solid var(--line);
           background: transparent;
           padding: 14px 0;
         }

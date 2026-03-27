@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { ResendCodeButton } from "@/components/resend-code-button";
+import { TerminalFrame } from "@/components/terminal-frame";
 
 type AuthVerifyPageProps = {
   searchParams: Promise<{
@@ -22,29 +23,6 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
           align-items: center;
           justify-content: center;
           padding: 32px 20px;
-        }
-
-        .auth-frame {
-          width: min(400px, 100%);
-          display: flex;
-          flex-direction: column;
-          gap: 32px;
-        }
-
-        .auth-shell nav {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          color: var(--muted);
-        }
-
-        .auth-shell nav a {
-          color: var(--muted);
-          text-decoration: none;
-        }
-
-        .auth-shell nav a:hover {
-          color: var(--text);
         }
 
         .auth-head {
@@ -87,12 +65,24 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
         }
 
         .auth-form button {
-          padding: 10px 14px;
-          border: 0;
+          padding: 10px 16px;
+          border: 2px solid var(--btn-border);
           border-radius: 6px;
-          background: var(--text);
-          color: var(--bg);
+          background: var(--btn-bg);
+          color: var(--btn-text);
           cursor: pointer;
+          box-shadow: 4px 4px 0 var(--btn-shadow);
+          transition: transform 80ms ease, box-shadow 80ms ease;
+        }
+
+        .auth-form button:hover {
+          transform: translate(-1px, -1px);
+          box-shadow: 5px 5px 0 var(--btn-shadow);
+        }
+
+        .auth-form button:active {
+          transform: translate(2px, 2px);
+          box-shadow: 1px 1px 0 var(--btn-shadow);
         }
 
         .auth-error {
@@ -104,6 +94,7 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
           display: flex;
           flex-direction: column;
           gap: 8px;
+          margin-top: 8px;
           color: var(--muted);
         }
 
@@ -123,12 +114,7 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
         }
       `}</style>
 
-      <div className="auth-frame">
-        <nav>
-          <Link href="/">mdshare</Link>
-          <Link href="/auth/start">back</Link>
-        </nav>
-
+      <TerminalFrame>
         <div className="auth-head">
           <h1>Enter your code</h1>
           <p>
@@ -139,7 +125,7 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
         {params.error ? <p className="auth-error">{params.error}</p> : null}
 
         <form action="/api/auth/verify-code" method="post" className="auth-form">
-          <input name="email" readOnly required type="email" value={params.email ?? ""} />
+          <input name="email" type="hidden" value={params.email ?? ""} />
           <input
             name="code"
             inputMode="numeric"
@@ -153,18 +139,15 @@ export default async function AuthVerifyPage({ searchParams }: AuthVerifyPagePro
           <button type="submit">Continue</button>
         </form>
 
-        <form action="/api/auth/request-code" className="auth-resend" method="post">
-          <input name="email" type="hidden" value={params.email ?? ""} />
-          <input name="next" type="hidden" value={params.next ?? "/dashboard/sites"} />
-          <input name="claimSlug" type="hidden" value={params.claimSlug ?? ""} />
-          <input name="claimToken" type="hidden" value={params.claimToken ?? ""} />
-          <div className="auth-inline">
-            <p>Need another code?</p>
-            <button type="submit">Send a new one</button>
-          </div>
-          <p>Check spam if you don't see it within a minute.</p>
-        </form>
-      </div>
+        <div className="auth-resend">
+          <ResendCodeButton
+            email={params.email ?? ""}
+            next={params.next ?? "/dashboard/sites"}
+            claimSlug={params.claimSlug ?? ""}
+            claimToken={params.claimToken ?? ""}
+          />
+        </div>
+      </TerminalFrame>
     </main>
   );
 }

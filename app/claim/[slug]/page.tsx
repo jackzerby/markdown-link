@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { TerminalFrame } from "@/components/terminal-frame";
 import { db } from "@/lib/db";
 import { relativeDate } from "@/lib/utils";
 
@@ -32,6 +33,7 @@ export default async function ClaimPage({ params, searchParams }: ClaimPageProps
 
   return (
     <main className="claim-page stack">
+      <TerminalFrame>
       <div className="section-head">
         <h1>Keep this link live</h1>
         <p>{site.title ?? slug}</p>
@@ -50,6 +52,7 @@ export default async function ClaimPage({ params, searchParams }: ClaimPageProps
         <Link href={`/p/${slug}`}>View link</Link>
         <Link href={`/dashboard/plan?${planParams.toString()}`}>See Pro plan</Link>
       </div>
+      </TerminalFrame>
     </main>
   );
 }
