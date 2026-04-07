@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
@@ -9,6 +10,40 @@ import { hashSecret } from "@/lib/hash";
 type PublishViewerPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: PublishViewerPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const site = await db.site.findUnique({
+    where: { slug },
+    select: { title: true, description: true, currentVersion: { select: { markdown: true } } },
+  });
+
+  if (!site) return {};
+
+  const title = site.title || "Shared markdown";
+  const description =
+    site.description ||
+    site.currentVersion?.markdown.slice(0, 160).replace(/\n/g, " ").trim() ||
+    "A markdown document shared via mdshare.link";
+  const url = `${env.APP_URL}/p/${slug}`;
+
+  return {
+    title: `${title} — mdshare.link`,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "mdshare.link",
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 const publishViewStyles = (
   <style>{`
