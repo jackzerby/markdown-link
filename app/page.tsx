@@ -41,29 +41,48 @@ export default async function HomePage() {
           font-weight: 600;
         }
 
-        .home-sub {
-          margin: 0;
-          max-width: 38ch;
-          line-height: 1.7;
-          color: var(--muted);
+
+        .home-steps {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 4px;
         }
 
-        .home-proof {
-          display: grid;
-          gap: 8px;
-          margin-top: 2px;
-          color: var(--muted);
+        .home-step {
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
         }
 
-        .home-proof code {
-          display: block;
-          width: fit-content;
-          max-width: 100%;
-          padding: 8px 10px;
-          border-radius: 10px;
+        .home-step-num {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          width: 24px;
+          height: 24px;
+          border-radius: 4px;
+          background: var(--text);
+          color: var(--bg);
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 1;
+          position: relative;
+          top: 1px;
+        }
+
+        .home-step-text {
+          color: var(--muted);
+          line-height: 1.5;
+        }
+
+        .home-step-text code {
+          padding: 2px 6px;
+          border-radius: 4px;
           background: var(--surface);
           color: var(--text);
-          overflow-wrap: anywhere;
+          font-size: 0.9em;
         }
 
         .home-sample-label {
@@ -272,14 +291,18 @@ export default async function HomePage() {
       <TerminalFrame>
         <div className="home-body">
           <h1>Share markdown.</h1>
-          <p className="home-sub">
-            One command. No account required.
-          </p>
-          <div className="home-proof">
-            <code>mdshare ./plan.md → mdshare.link/p/abcd-1234</code>
+          <div className="home-steps">
+            <div className="home-step">
+              <span className="home-step-num">1</span>
+              <span className="home-step-text">Install with <code>npm i -g mdshare</code></span>
+            </div>
+            <div className="home-step">
+              <span className="home-step-num">2</span>
+              <span className="home-step-text">Run <code>mdshare ./plan.md</code> and get a link</span>
+            </div>
           </div>
           <HomePrimaryCta />
-          <p className="home-sample-label">Free for 7 days. Permanent for $5/mo.</p>
+          <p className="home-sample-label">No account required. Free for 7 days. Permanent for $5/mo.</p>
         </div>
 
         <div className="home-links">
