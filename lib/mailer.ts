@@ -88,6 +88,34 @@ export async function applyEmailDeliveryWebhook(input: {
   return { updated: true as const, deliveryId: delivery.id };
 }
 
+export async function sendSupportNotificationEmail(input: {
+  userEmail: string;
+  subject: string;
+  message: string;
+}) {
+  const to = "jackzerby@gmail.com";
+  const emailSubject = `[mdshare support] ${input.subject}`;
+  const text = [
+    `From: ${input.userEmail}`,
+    `Subject: ${input.subject}`,
+    "",
+    input.message,
+  ].join("\n");
+
+  if (!resend) {
+    console.info("[mail:dev] support notification", { to, subject: emailSubject });
+    return { devMode: true };
+  }
+
+  return resend.emails.send({
+    from: env.RESEND_FROM_EMAIL,
+    to,
+    replyTo: input.userEmail,
+    subject: emailSubject,
+    text,
+  });
+}
+
 export async function sendSignInCodeEmail(input: {
   email: string;
   code: string;
